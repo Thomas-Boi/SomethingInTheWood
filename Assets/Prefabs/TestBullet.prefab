@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3070957796444466548}
   - component: {fileID: 5619871900605316008}
-  - component: {fileID: 2375361506325736182}
-  m_Layer: 0
+  - component: {fileID: -3497474070038018802}
+  - component: {fileID: 6276235248918717922}
+  m_Layer: 8
   m_Name: TestBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2375361506325736182
+--- !u!114 &-3497474070038018802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,6 +93,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 3070957796444466549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6b4f3539968734f9d5be7410148b35, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e7e8d2a90eb4774e9213245cbb394d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementMultiplier: 50
+  flightTime: 2
+--- !u!50 &6276235248918717922
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3070957796444466549}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

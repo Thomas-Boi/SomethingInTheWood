@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6303650724744954230}
   - component: {fileID: 3465766754209241002}
+  - component: {fileID: 6695608513501769976}
   m_Layer: 0
   m_Name: TestGun
   m_TagString: Untagged
@@ -83,6 +84,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6695608513501769976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303650724744954231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6b4f3539968734f9d5be7410148b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3070957796444466549, guid: a84d02d54f1187745b1f131a1dde1b3d, type: 3}
 --- !u!1 &8443612753709371478
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8443612753709371478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.56, y: -0.34, z: -0.1907537}
+  m_LocalPosition: {x: 3.57, y: -0.44, z: -0.1907537}
   m_LocalScale: {x: 1, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 6303650724744954230}
