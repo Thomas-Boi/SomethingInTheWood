@@ -28,6 +28,16 @@ public class ProtoAiming : MonoBehaviour
         float lookAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.forward);
 
+
+        if (transform.localRotation.z > 0)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 0;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
+
         // SHOOTING
         if (Input.GetMouseButtonDown(0))
         {
