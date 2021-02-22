@@ -7,6 +7,13 @@ public class ProtoMovement : MonoBehaviour
     // Using serialize field so we can adjust speed in editor
     [SerializeField]
     private float movementSpeed = 5.0f;
+    public Rigidbody2D rb;
+    private Vector3 movement;
+
+
+    private void Move() {
+        rb.velocity = new Vector2(movement.x, movement.y);
+    }
 
     void Update()
     {
@@ -16,11 +23,10 @@ public class ProtoMovement : MonoBehaviour
 
         // Player Inputs
         // WASD Movement, getting the direction from defined axes in input manager of Unity Project
-        float xDir = Input.GetAxisRaw("Horizontal");
-        transform.Translate(movementSpeed * xDir * Time.deltaTime, 0, 0);
-
-        float yDir = Input.GetAxisRaw("Vertical");
-        transform.Translate(0, movementSpeed * yDir * Time.deltaTime, 0);
+        float xDir = Input.GetAxisRaw("Horizontal") * movementSpeed;
+        float yDir = Input.GetAxisRaw("Vertical") * movementSpeed;
+        movement = new Vector2(xDir, yDir);
+        Move();
 
         // Aiming and Shooting
     }
