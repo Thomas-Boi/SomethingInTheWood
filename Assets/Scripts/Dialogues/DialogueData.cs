@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// holds the data about a dialogue for a specific week/scenario
-[CreateAssetMenu(fileName = "New Dialogue Data", menuName = "Dialogue")]
-public class DialogueData : ScriptableObject 
+/// <summary>
+/// Holds multiple DialoguesStruct
+/// </summary>
+[Serializable]
+public class DialogueData
 {
     public DialogueStruct[] dialogues;
 }

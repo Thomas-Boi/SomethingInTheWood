@@ -10,12 +10,12 @@ public class DialogueDisplayer : MonoBehaviour
     public Dialogue DisplayDialogue(string dialogueName)
     {
         var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<Dialogue>();
-        DialogueData data = Resources.Load<DialogueData>($"DialogueData/{dialogueName}");
-        DialogueStruct[] dialogues = Resources.Load<DialogueData>($"DialogueData/{dialogueName}").dialogues;
+        TextAsset data = Resources.Load<TextAsset>($"DialogueData/{dialogueName}");
+        DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(data.ToString());
 
         // show the first dialogue
         // after that, the onclick event handler will do the rest
-        dialogueElem.StartDialogue(dialogues);
+        dialogueElem.StartDialogue(dialogueData.dialogues);
         dialogueElem.NextDialogue();
         return dialogueElem;
     }
