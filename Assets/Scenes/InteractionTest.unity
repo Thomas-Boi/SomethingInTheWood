@@ -3665,7 +3665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8dac33f236c0548991b40fa695ac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRange: 2
+  interactRange: 55
 --- !u!1001 &1689280432
 PrefabInstance:
   m_ObjectHideFlags: 0
