@@ -16,13 +16,32 @@ public class ProtoInteraction : MonoBehaviour
 
     private ProtoMovement movementScript;
 
+    /// <summary>
+    /// Contain the current dialogue the player is seeing.
+    /// Setting this will freeze the player's location until
+    /// the dialogue is finished.
+    /// </summary>
+    public Dialogue CurDialogue {
+        get { return curDialogue; }
+        set 
+        {
+            movementScript.CanMove = false;
+            curDialogue = value;
+        }
+    }
+
+    // allows Player to set the CurDialogue when script starts
+    private void Awake()
+    {
+        movementScript = GetComponent<ProtoMovement>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // Find all objects with Tag "Interactable" within the current scene
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
 
-        movementScript = GetComponent<ProtoMovement>();
     }
 
     // Update is called once per frame
@@ -53,37 +72,40 @@ public class ProtoInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
-            if (interactObject != null && interactObject.GetComponent<NPC>() != null)
+            if (CurDialogue)
             {
-                HandleDialogue(interactObject.GetComponent<NPC>().DialogueName);
-            } 
+                ContinueDialogue();
+            }
+            else if (interactObject?.GetComponent<Character>() != null)
+            {
+                StartDialogue(interactObject.GetComponent<Character>());
+            }
         }
 
     }
 
     /// <summary>
-    /// Deal with the dialogues.
     /// Start a new dialogue if there isn't one on the scene already.
-    /// If there's one, go to the next line.
     /// </summary>
-    /// <param name="dialogueName">
-    /// The name of the dialogue we are displaying.
+    /// <param name="character">
+    /// The character we are talking to.
     /// </param>
-    private void HandleDialogue(string dialogueName)
+    private void StartDialogue(Character character)
     {
-        if (curDialogue)
+        CurDialogue = character.Talk();
+    }
+
+    /// <summary>
+    /// Continue the dialogue if there's one.
+    /// This will also allow the player to move again.
+    /// </summary>
+    private void ContinueDialogue()
+    {
+        if (!curDialogue.NextDialogue())
         {
-            if (!curDialogue.NextDialogue())
-            {
-                curDialogue = null;
-                movementScript.CanMove = true;
-            }
-            return;
+            CurDialogue = null;
+            movementScript.CanMove = true;
         }
-        curDialogue = GameObject.Find("Canvas")
-            .GetComponent<DialogueDisplayer>().DisplayDialogue(dialogueName);
-        movementScript.CanMove = false;
     }
 
     private bool ObjectInRange()

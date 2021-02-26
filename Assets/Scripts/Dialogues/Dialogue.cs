@@ -32,7 +32,8 @@ public class Dialogue : MonoBehaviour
     // if there's none, delete the dialogue
     // returns true if there are 
     /// <summary>
-    /// Get the next dialogue.
+    /// Get the next dialogue. If there's no more, destroy
+    /// the dialogue UI object.
     /// </summary>
     /// <returns>
     /// true if there is a next dialogue. Else false.
