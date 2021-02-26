@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-// holds the data about a dialogue for a specific week/scenario
+/// <summary>
+/// Holds multiple DialoguesStruct
+/// </summary>
 [Serializable]
-public struct DialogueData
+public class DialogueData
 {
-    public DialogueStruct[] onStartDialogue;
+    public DialogueStruct[] dialogues;
 }
 
 // holds the data on a dialogue speaker and what they says
