@@ -12,11 +12,17 @@ public class ProtoInteraction : MonoBehaviour
 
     private GameObject interactObject;
 
+    private Dialogue curDialogue;
+
+    private ProtoMovement movementScript;
+
     // Start is called before the first frame update
     void Start()
     {
         // Find all objects with Tag "Interactable" within the current scene
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
+
+        movementScript = GetComponent<ProtoMovement>();
     }
 
     // Update is called once per frame
@@ -30,28 +36,51 @@ public class ProtoInteraction : MonoBehaviour
 
         if (ObjectInRange())
         {
-
             var sprOutline = interactObject.GetComponent<SpriteRenderer>().color;
             sprOutline = Color.red;
             interactObject.GetComponent<SpriteRenderer>().color = sprOutline;
-
-            // Interact with 'E' key
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // This action is currently for testing purposes
-                // Feel free to change the interaction when 'E' is pressed to initialize dialogue
-                Debug.Log("Hi there!");
-            }
-        } else
+        }
+        else
         {
             if (interactObject != null)
             {
                 var sprOutline = interactObject.GetComponent<SpriteRenderer>().color;
                 sprOutline = Color.yellow;
                 interactObject.GetComponent<SpriteRenderer>().color = sprOutline;
+                interactObject = null;
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            
+            if (interactObject != null)
+            {
+                HandleDialogue();
+            } 
+        }
+
+    }
+
+    /// <summary>
+    /// Deal with the dialogues.
+    /// Start a new dialogue if there isn't one on the scene already.
+    /// If there's one, go to the next line.
+    /// </summary>
+    private void HandleDialogue()
+    {
+        if (curDialogue)
+        {
+            if (!curDialogue.NextDialogue())
+            {
+                curDialogue = null;
+                movementScript.CanMove = true;
+            }
+            return;
+        }
+        curDialogue = GameObject.Find("Canvas")
+            .GetComponent<DialogueDisplayer>().DisplayDialogue("ProtoDialogue");
+        movementScript.CanMove = false;
     }
 
     private bool ObjectInRange()

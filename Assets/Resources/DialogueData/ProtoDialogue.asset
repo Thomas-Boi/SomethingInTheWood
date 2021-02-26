@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63895d2a25591534e9687bd9c870ee0b, type: 3}
+  m_Name: ProtoDialogue
+  m_EditorClassIdentifier: 
+  dialogues:
+  - speaker: Jack
+    speech: H-hey, are you OK?
+  - speaker: John
+    speech: I'm just peachy. How are you doing kid?
+  - speaker: Jack
+    speech: I'm fine. Where are the others?
+  - speaker: John
+    speech: We set up a camp on the other side of the island. How the hell did you
+      drift all the way here?
+  - speaker: Jack
+    speech: I..I don't remember. I blacked out after the explosion happened.
+  - speaker: John
+    speech: It doesn't matter. It's dark now. We should set up camp here. I'll bring
+      you to the group tomorrow morning.
