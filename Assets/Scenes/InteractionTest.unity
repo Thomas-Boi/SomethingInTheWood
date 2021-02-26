@@ -1841,6 +1841,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &789630734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7459116194059395685, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
+  m_PrefabInstance: {fileID: 1190425586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &789630735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789630734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8a470ea9399d4aa969798a0d86968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueName: ProtoDialogue
 --- !u!1 &883461298
 GameObject:
   m_ObjectHideFlags: 0

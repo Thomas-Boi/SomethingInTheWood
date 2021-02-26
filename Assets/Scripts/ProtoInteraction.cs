@@ -54,9 +54,9 @@ public class ProtoInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             
-            if (interactObject != null)
+            if (interactObject != null && interactObject.GetComponent<NPC>() != null)
             {
-                HandleDialogue();
+                HandleDialogue(interactObject.GetComponent<NPC>().DialogueName);
             } 
         }
 
@@ -67,7 +67,10 @@ public class ProtoInteraction : MonoBehaviour
     /// Start a new dialogue if there isn't one on the scene already.
     /// If there's one, go to the next line.
     /// </summary>
-    private void HandleDialogue()
+    /// <param name="dialogueName">
+    /// The name of the dialogue we are displaying.
+    /// </param>
+    private void HandleDialogue(string dialogueName)
     {
         if (curDialogue)
         {
@@ -79,7 +82,7 @@ public class ProtoInteraction : MonoBehaviour
             return;
         }
         curDialogue = GameObject.Find("Canvas")
-            .GetComponent<DialogueDisplayer>().DisplayDialogue("ProtoDialogue");
+            .GetComponent<DialogueDisplayer>().DisplayDialogue(dialogueName);
         movementScript.CanMove = false;
     }
 
