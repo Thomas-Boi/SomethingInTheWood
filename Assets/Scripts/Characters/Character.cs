@@ -8,15 +8,10 @@ public class Character : MonoBehaviour
 
     public GameObject textBubble;
 
-    private void Start()
-    {
-        DisplayTextBubble();
-    }
-
     /// <summary>
     /// Display a text bubble near the player's head top right.
     /// </summary>
-    private void DisplayTextBubble()
+    public void DisplayTextBubble()
     {
         if (!textBubble) return;
         // need to do some math to shift the bubble around.
@@ -26,15 +21,15 @@ public class Character : MonoBehaviour
         Instantiate(textBubble, position, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Talk to the player. 
+    /// </summary>
+    /// <returns>
+    /// A dialogue object that can be used to continue the dialogue.
+    /// </returns>
     public Dialogue Talk() 
     {
         return GameObject.Find("Canvas")
             .GetComponent<DialogueDisplayer>().DisplayDialogue(DialogueName);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

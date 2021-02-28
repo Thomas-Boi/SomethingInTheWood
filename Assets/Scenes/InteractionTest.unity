@@ -1890,6 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1515125499}
+  John: {fileID: 789630735}
 --- !u!4 &846460260
 Transform:
   m_ObjectHideFlags: 0
@@ -3833,33 +3834,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5915573291055368783, guid: 36246e87bb416554986b06c1b290f116, type: 3}
   m_PrefabInstance: {fileID: 1689280432}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1515125493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515125492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d8dac33f236c0548991b40fa695ac6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactRange: 55
---- !u!114 &1515125498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515125492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff8a470ea9399d4aa969798a0d86968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueName: 
-  textBubble: {fileID: 0}
 --- !u!114 &1515125499
 MonoBehaviour:
   m_ObjectHideFlags: 0
