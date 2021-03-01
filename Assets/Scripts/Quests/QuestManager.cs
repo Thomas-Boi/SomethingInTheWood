@@ -7,8 +7,6 @@ public class QuestManager : MonoBehaviour
 
     private ArrayList activeQuests;
 
-    private ArrayList finishedQuests;
-
     public GameObject questPrefab;
 
     public void Start() 

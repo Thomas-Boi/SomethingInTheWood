@@ -33,7 +33,9 @@ public class Quest : MonoBehaviour
     public bool UpdateProgress()
     {
         progressTxt.text = $"{++curAmount}/{detail.amount}";
-        return curAmount == detail.amount;
+        bool finished = curAmount == detail.amount;
+        if (finished) Destroy(gameObject);
+        return finished;
     }
 
     /// <summary>

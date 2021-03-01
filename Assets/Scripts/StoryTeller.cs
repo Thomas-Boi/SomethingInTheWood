@@ -18,6 +18,7 @@ public class StoryTeller : MonoBehaviour
         player.TalkOutloud();
 
         John.DisplayTextBubble();
+        John.DialogueName = "ProtoDialogue";
     }
 
     // Update is called once per frame
