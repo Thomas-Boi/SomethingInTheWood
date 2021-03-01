@@ -10,10 +10,13 @@ public class Player : Character
 
     private Dialogue curDialogue;
 
+    private QuestManager questManager;
+
     void Awake()
     {
         interactionScript = new ProtoInteraction(this);
         movementScript = GetComponent<ProtoMovement>();
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class Player : Character
             {// dialogue finished
                 curDialogue = null;
                 movementScript.CanMove = true;
+                questManager.AddQuest("Intro");
             }
         }
         else

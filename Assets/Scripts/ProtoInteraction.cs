@@ -13,6 +13,8 @@ public class ProtoInteraction
     // the player can only interact with one object at a time
     private GameObject interactObject;
 
+    private QuestManager questManager;
+
     private readonly Player player;
 
     public ProtoInteraction(Player player)
@@ -20,6 +22,7 @@ public class ProtoInteraction
         this.player = player;
         // find all things that can be interact with
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
     }
 
     /// <summary>
@@ -31,7 +34,7 @@ public class ProtoInteraction
     /// </param>
     public void Update(bool isTalking)
     {
-
+        interactables = GameObject.FindGameObjectsWithTag("Interactable");
         // If object is within designated range of player, allow player to interact 
         // For testing purposes, change the color of TestNPC to let the player know they are in range
         // Later we should have a state that lets the player know they are in range
@@ -62,9 +65,18 @@ public class ProtoInteraction
                 return;
             }
 
-            if (interactObject?.GetComponent<Character>() != null) // is a character
+            if (interactObject?.GetComponent<Character>()) // is a character
             {
                 player.HandleDialogue(interactObject.GetComponent<Character>());
+                return;
+            }
+
+            if (interactObject?.GetComponent<Item>()) // is an item
+            {
+                string itemName = interactObject.GetComponent<Item>().Interact();
+                questManager.CheckQuestItem(itemName);
+                // recheck the interactables in case one got destroyed
+                interactables = GameObject.FindGameObjectsWithTag("Interactable");
             }
 
         }

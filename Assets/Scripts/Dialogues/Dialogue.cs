@@ -58,6 +58,7 @@ public class Dialogue : MonoBehaviour
         catch (IndexOutOfRangeException)
         {
             Destroy(gameObject);
+
             return false;
         }
         return true;
