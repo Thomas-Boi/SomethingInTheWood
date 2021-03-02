@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
+    public GameObject questPrefab;
 
     private ArrayList activeQuests;
-
-    public GameObject questPrefab;
 
     public void Start() 
     {
@@ -15,25 +14,46 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Addd a quest to the manager.
+    /// Add a quest to the manager.
     /// </summary>
-    /// <param name="questDetailName">
+    /// <param name="questName">
     /// Name of the Quest Detail Scriptable Object.
     /// </param>
-    public void AddQuest(string questDetailName)
+    public void AddQuest(string questName)
     {
-        QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questDetailName);
+        QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
         Quest quest = Instantiate(questPrefab, transform).GetComponent<Quest>();
         quest.StartQuest(detail);
         activeQuests.Add(quest);
     }
 
     /// <summary>
+    /// Wrapper for the AddQuest(string) method. To be used as a
+    /// callback for when a dialogue ends.
+    /// </summary>
+    /// <param name="srcObject">
+    /// The object that called this callback.
+    /// </param>
+    ///  <param name="args">
+    /// The event handler object containing the questName.
+    /// </param>
+    public void AddQuest(object srcObject, DialogueEndedEventArgs args)
+    {
+        AddQuest(args.questName);
+    }
+
+    /// <summary>
     /// Check whether the itemName belongs to any
     /// of the quest. If it is, update the quest progress.
     /// </summary>
-    /// <param name="itemName"></param>
-    public void CheckQuestItem(string itemName)
+    /// <param name="itemName">
+    /// Name of an Item Prefab.
+    /// </param>
+    /// <returns>
+    /// Whether the quest item is removed from the 
+    /// scene.
+    /// </returns>
+    public bool CheckQuestItem(string itemName)
     {
         Quest finishedQuest = null;
         foreach (Quest quest in activeQuests)
@@ -52,7 +72,9 @@ public class QuestManager : MonoBehaviour
         if (finishedQuest != null)
         {
             activeQuests.Remove(finishedQuest);
+            return true;
         }
+        return false;
     }
 
 }

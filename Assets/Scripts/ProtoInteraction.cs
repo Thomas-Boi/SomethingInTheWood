@@ -74,9 +74,11 @@ public class ProtoInteraction
             if (interactObject?.GetComponent<Item>()) // is an item
             {
                 string itemName = interactObject.GetComponent<Item>().Interact();
-                questManager.CheckQuestItem(itemName);
-                // recheck the interactables in case one got destroyed
-                interactables = GameObject.FindGameObjectsWithTag("Interactable");
+                if (questManager.CheckQuestItem(itemName))
+                {
+                    // recheck the interactables in case one got destroyed
+                    interactables = GameObject.FindGameObjectsWithTag("Interactable");
+                }
             }
 
         }
@@ -95,6 +97,7 @@ public class ProtoInteraction
                 return true;
             }
         }
+        interactObject = null;
         return false;
     }
 
