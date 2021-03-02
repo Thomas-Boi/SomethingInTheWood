@@ -42,7 +42,6 @@ public class Player : Character
             {// dialogue finished
                 curDialogue = null;
                 movementScript.CanMove = true;
-                questManager.AddQuest("Intro");
             }
         }
         else
