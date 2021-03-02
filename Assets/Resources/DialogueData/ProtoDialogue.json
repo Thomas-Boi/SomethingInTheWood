@@ -1,0 +1,44 @@
+{
+	"dialogues": [
+		{
+			"speaker": "Jack",
+			"speech": "H-hi, were you from the tanker too?"
+		},
+		{
+			"speaker": "John",
+			"speech": "Jack, it's me, John."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "O-oh, sorry boss. I'm glad to see you though. How are you doing?"
+		},
+		{
+			"speaker": "John",
+			"speech": "Besides losing my gun and my radio, I'm just peachy. How bout you kid?"
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Well, I'm ok I think. My head hurts from the explosion though."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Are there other survivors?"
+		},
+		{
+			"speaker": "John",
+			"speech": "Yes, we set up camp about 2 hours away from here. How the hell did you wash up here so far away from everyone else?"
+		},
+		{
+			"speaker": "Jack",
+			"speech": "I'm not too sure... I remembering grabbing on something and just swim towards the island."
+		},	
+		{
+			"speaker": "John",
+			"speech": "Well, it's too late to go back now. It's getting dark. Let's set up camp here and we'll go to the group tomorrow morning."
+		},
+		{
+			"speaker": "John",
+			"speech": "Why don't you go around and pick up some wood for the fire? About 8 logs should be enough. Just press E to pick them up."
+		}
+	]
+}

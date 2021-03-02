@@ -9,10 +9,31 @@ public class ProtoMovement : MonoBehaviour
     private float movementSpeed = 5.0f;
     public Rigidbody2D rb;
     private Vector3 movement;
+    private bool canMove;
 
+    /// <summary>
+    /// Whether the player can move or not.
+    /// If true, they can. If false, they can't.
+    /// </summary>
+    public bool CanMove {
+        get { return canMove; }
+        set
+        {
+            if (!value)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            canMove = value;
+        }
+    }
 
     private void Move() {
         rb.velocity = new Vector2(movement.x, movement.y);
+    }
+
+    private void Start()
+    {
+        CanMove = true;
     }
 
     void Update()
@@ -23,10 +44,14 @@ public class ProtoMovement : MonoBehaviour
 
         // Player Inputs
         // WASD Movement, getting the direction from defined axes in input manager of Unity Project
-        float xDir = Input.GetAxisRaw("Horizontal") * movementSpeed;
-        float yDir = Input.GetAxisRaw("Vertical") * movementSpeed;
-        movement = new Vector2(xDir, yDir);
-        Move();
+        if (CanMove)
+        {
+            float xDir = Input.GetAxisRaw("Horizontal") * movementSpeed;
+            float yDir = Input.GetAxisRaw("Vertical") * movementSpeed;
+            movement = new Vector2(xDir, yDir);
+            Move();
+        }
+
 
         // Aiming and Shooting
     }
