@@ -8,12 +8,17 @@ using UnityEngine;
 public class StoryTeller : MonoBehaviour
 {
     public Player player;
+    public Character John;
 
     // Start is called before the first frame update
+    // set up all the dialogues and quests
     void Start()
-    {
+    { // in the future, hopefully we can load this using a scriptable object.
         player.DialogueName = "Intro";
-        player.Talk();
+        player.TalkOutloud();
+
+        John.DisplayTextBubble();
+        John.DialogueName = "ProtoDialogue";
     }
 
     // Update is called once per frame

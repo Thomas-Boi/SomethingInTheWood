@@ -18,6 +18,8 @@ public class Dialogue : MonoBehaviour
     private DialogueStruct[] dialogues;
     private int curScriptIndex;
 
+    public EventHandler OnEndHandler;
+
     // start a new series of dialogues.
     // need to call this first after instantiaing a Dialogue Prefab
     // the combatHUDTransform is the UI canvas element's transform
@@ -58,11 +60,10 @@ public class Dialogue : MonoBehaviour
         catch (IndexOutOfRangeException)
         {
             Destroy(gameObject);
+            OnEndHandler?.Invoke();
             return false;
         }
         return true;
     }
-
-
 }
 

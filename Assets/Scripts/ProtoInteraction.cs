@@ -3,51 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ProtoInteraction : MonoBehaviour
+public class ProtoInteraction
 {
 
     [SerializeField]
     private float interactRange = 55.0f;
     private GameObject[] interactables;
 
+    // the player can only interact with one object at a time
     private GameObject interactObject;
 
-    private Dialogue curDialogue;
+    private QuestManager questManager;
 
-    private ProtoMovement movementScript;
+    private readonly Player player;
+
+    public ProtoInteraction(Player player)
+    {
+        this.player = player;
+        // find all things that can be interact with
+        interactables = GameObject.FindGameObjectsWithTag("Interactable");
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+    }
 
     /// <summary>
-    /// Contain the current dialogue the player is seeing.
-    /// Setting this will freeze the player's location until
-    /// the dialogue is finished.
+    /// Update is called once per frame
     /// </summary>
-    public Dialogue CurDialogue {
-        get { return curDialogue; }
-        set 
-        {
-            movementScript.CanMove = false;
-            curDialogue = value;
-        }
-    }
-
-    // allows Player to set the CurDialogue when script starts
-    private void Awake()
+    /// <param name="isTalking">
+    /// Whether the player is talking (either to themselves
+    /// or others).
+    /// </param>
+    public void Update(bool isTalking)
     {
-        movementScript = GetComponent<ProtoMovement>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Find all objects with Tag "Interactable" within the current scene
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
         // If object is within designated range of player, allow player to interact 
         // For testing purposes, change the color of TestNPC to let the player know they are in range
         // Later we should have a state that lets the player know they are in range
@@ -72,47 +59,36 @@ public class ProtoInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (CurDialogue)
+            if (isTalking)
             {
-                ContinueDialogue();
+                player.HandleDialogue(null); // player already know they are talking
+                return;
             }
-            else if (interactObject?.GetComponent<Character>() != null)
+
+            if (interactObject?.GetComponent<Character>()) // is a character
             {
-                StartDialogue(interactObject.GetComponent<Character>());
+                player.HandleDialogue(interactObject.GetComponent<Character>());
+                return;
             }
+
+            if (interactObject?.GetComponent<Item>()) // is an item
+            {
+                string itemName = interactObject.GetComponent<Item>().Interact();
+                questManager.CheckQuestItem(itemName);
+                // recheck the interactables in case one got destroyed
+                interactables = GameObject.FindGameObjectsWithTag("Interactable");
+            }
+
         }
 
     }
 
-    /// <summary>
-    /// Start a new dialogue if there isn't one on the scene already.
-    /// </summary>
-    /// <param name="character">
-    /// The character we are talking to.
-    /// </param>
-    private void StartDialogue(Character character)
-    {
-        CurDialogue = character.Talk();
-    }
-
-    /// <summary>
-    /// Continue the dialogue if there's one.
-    /// This will also allow the player to move again.
-    /// </summary>
-    private void ContinueDialogue()
-    {
-        if (!curDialogue.NextDialogue())
-        {
-            CurDialogue = null;
-            movementScript.CanMove = true;
-        }
-    }
 
     private bool ObjectInRange()
     {
         foreach (GameObject go in interactables)
         {
-            float distance = (go.transform.position - transform.position).sqrMagnitude;
+            float distance = (go.transform.position - player.transform.position).sqrMagnitude;
             if (distance <= interactRange)
             {
                 interactObject = go;
