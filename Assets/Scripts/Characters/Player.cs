@@ -8,7 +8,7 @@ public class Player : Character
 
     private ProtoMovement movementScript;
 
-    private Dialogue curDialogue;
+    private DialogueUI curDialogue;
 
     private QuestManager questManager;
 

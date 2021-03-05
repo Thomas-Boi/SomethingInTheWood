@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 // holds the Text elements to display a dialogue piece from characters
-public class Dialogue : MonoBehaviour
+public class DialogueUI : MonoBehaviour
 {
     // refs to UI elements
     public Text speakerTxt;

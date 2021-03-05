@@ -14,10 +14,10 @@ public class DialogueDisplayer : MonoBehaviour
         questManager = gameObject.GetComponent<QuestManager>();
     }
 
-    public Dialogue DisplayDialogue(string dialogueName)
+    public DialogueUI DisplayDialogue(string dialogueName)
     {
-        var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<Dialogue>();
-        TextAsset data = Resources.Load<TextAsset>($"DialogueData/{dialogueName}");
+        var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
+        TextAsset data = Resources.Load<TextAsset>($"Dialogues/{dialogueName}");
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(data.ToString());
 
         // show the first dialogue and pass the quest name to be created when
