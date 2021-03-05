@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
     /// <returns>
     /// A dialogue object that can be used to continue the dialogue.
     /// </returns>
-    public Dialogue Talk() 
+    public DialogueUI Talk() 
     {
         return GameObject.Find("Canvas")
             .GetComponent<DialogueDisplayer>().DisplayDialogue(DialogueName);
