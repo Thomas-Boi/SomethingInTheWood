@@ -83,6 +83,7 @@ public class ProtoInteraction
 
         }
 
+        // if kill, get object name, pass to quest manager
     }
 
 
