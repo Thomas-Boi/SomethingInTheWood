@@ -12,6 +12,11 @@ public class Player : Character
 
     private QuestManager questManager;
 
+    // Player stats
+    public HealthBar playerHealthBar;
+    public int maxHealth;
+    public int currentHealth;
+
     void Awake()
     {
         interactionScript = new ProtoInteraction(this);
@@ -19,11 +24,25 @@ public class Player : Character
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
     }
 
+    void Start()
+    {
+        playerHealthBar.SetMaxHealth(maxHealth);
+    }
+
     // Update is called once per frame
     void Update()
     {
         bool isTalking = curDialogue != null;
-        interactionScript.Update(isTalking);   
+        interactionScript.Update(isTalking);
+        UpdatePlayerHealth();
+    }
+
+    /// <summary>
+    /// Updates the player's current health when they recover or take damage.
+    /// </summary>
+    public void UpdatePlayerHealth()
+    {
+        playerHealthBar.SetHealth(this.currentHealth);
     }
 
     /// <summary>
