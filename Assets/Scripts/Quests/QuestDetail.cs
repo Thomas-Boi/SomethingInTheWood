@@ -8,9 +8,4 @@ public class QuestDetail : ScriptableObject
     public string description;
     public string itemName;
     public int amount;
-
-    public void Test()
-    {
-
-    }
 }

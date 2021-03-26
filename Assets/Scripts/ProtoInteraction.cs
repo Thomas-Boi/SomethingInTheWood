@@ -71,13 +71,15 @@ public class ProtoInteraction
                 return;
             }
 
-            if (interactObject?.GetComponent<Character>()) // is a character
+            if (!interactObject) return;
+
+            if (interactObject.GetComponent<Character>()) // is a character
             {
                 player.HandleDialogue(interactObject.GetComponent<Character>());
                 return;
             }
 
-            if (interactObject?.GetComponent<Item>()) // is an item
+            if (interactObject.GetComponent<Item>()) // is an item
             {
                 string itemName = interactObject.GetComponent<Item>().Interact();
                 if (questManager.CheckQuestItem(itemName))

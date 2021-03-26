@@ -22,9 +22,23 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(string questName)
     {
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
-        Quest quest = Instantiate(questPrefab, transform).GetComponent<Quest>();
+        QuestUI quest = Instantiate(questPrefab, transform).GetComponent<QuestUI>();
         quest.StartQuest(detail);
         activeQuests.Add(quest);
+        ToggleQuestItemInteractable(detail);
+    }
+
+    private void ToggleQuestItemInteractable(QuestDetail quest)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(PickupItem.DEFAULT_TAG);
+        foreach (GameObject gameObj in objects) 
+        {
+            PickupItem item = gameObj.GetComponent<PickupItem>();
+            if (item.itemName == quest.itemName)
+            {
+                item.BecomeInteractible();
+            }
+        }
     }
 
     /// <summary>
@@ -55,8 +69,8 @@ public class QuestManager : MonoBehaviour
     /// </returns>
     public bool CheckQuestItem(string itemName)
     {
-        Quest finishedQuest = null;
-        foreach (Quest quest in activeQuests)
+        QuestUI finishedQuest = null;
+        foreach (QuestUI quest in activeQuests)
         {
             if (quest.CheckItem(itemName))
             {
