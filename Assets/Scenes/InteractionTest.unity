@@ -3395,7 +3395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a0373c094014949af69227e9c10612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPrefab: {fileID: 6778059657668601973, guid: b22bb86f7c37fb0459e6f4164de1b267, type: 3}
+  progressQuestPrefab: {fileID: 6778059657668601973, guid: b22bb86f7c37fb0459e6f4164de1b267, type: 3}
+  talkQuestPrefab: {fileID: 2311048673524464271, guid: 3e6054be54bd7c1419960a6c56f5270e, type: 3}
 --- !u!1 &900912688
 GameObject:
   m_ObjectHideFlags: 0

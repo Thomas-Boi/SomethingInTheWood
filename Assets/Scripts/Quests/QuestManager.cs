@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public GameObject questPrefab;
+    public GameObject progressQuestPrefab;
+    public GameObject talkQuestPrefab;
 
     private ArrayList activeQuests;
 
@@ -22,12 +23,22 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(string questName)
     {
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
-        QuestUI quest = Instantiate(questPrefab, transform).GetComponent<QuestUI>();
+        QuestUI quest;
+        switch(detail.questType)
+        {
+            case QuestType.TALK:
+                quest = Instantiate(talkQuestPrefab, transform).GetComponent<QuestUI>();
+                break;
+            default:
+                quest = Instantiate(progressQuestPrefab, transform).GetComponent<QuestUI>();
+                break;
+        }
         quest.StartQuest(detail);
         activeQuests.Add(quest);
         ToggleQuestItemInteractable(detail);
     }
 
+    // make all the quest item associated with this quest toggeable
     private void ToggleQuestItemInteractable(QuestDetail quest)
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag(PickupItem.DEFAULT_TAG);
@@ -72,7 +83,7 @@ public class QuestManager : MonoBehaviour
         QuestUI finishedQuest = null;
         foreach (QuestUI quest in activeQuests)
         {
-            if (quest.CheckItem(itemName))
+            if (quest.CheckObject(itemName))
             {
                 bool finished = quest.UpdateProgress();
                 if (finished)
