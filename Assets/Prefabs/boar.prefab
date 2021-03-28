@@ -117,7 +117,7 @@ NavMeshAgent:
   m_Radius: 2.8125
   m_Speed: 30
   m_Acceleration: 20
-  avoidancePriority: 50
+  avoidancePriority: 90
   m_AngularSpeed: 90
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -140,6 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  contactPush: 0
+  aggro: 0
+  knockbackTime: 0
+  sprite: {fileID: 6262014130163927050}
+  invincibleTime: 0
 --- !u!61 &5919935058047264296
 BoxCollider2D:
   m_ObjectHideFlags: 0
