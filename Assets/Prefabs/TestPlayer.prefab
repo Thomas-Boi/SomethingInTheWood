@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueName: 
   textBubble: {fileID: 0}
-  playerHealthBar: {fileID: 0}
+  playerHealthBar: {fileID: 9137668437537012884, guid: 2b3dd27c50ceb2044b121eb670d6cfbf, type: 3}
   maxHealth: 20
   currentHealth: 20
 --- !u!1 &6247569879185796626
