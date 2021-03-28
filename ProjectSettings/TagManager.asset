@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - PlayerBullet
   - Interactable
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - 
   - FriendlyProjectiles
   - Player
-  - 
-  - 
+  - Enemy
+  - Walls
   - 
   - 
   - 
