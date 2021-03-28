@@ -3254,7 +3254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b36a082e53ae24d954d385f623b422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1515125499}
+  player: {fileID: 1515125494}
   John: {fileID: 789630735}
 --- !u!4 &846460260
 Transform:
@@ -8710,29 +8710,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4408742324497048797, guid: a0e05332193f55a46a13c48a71d63b41, type: 3}
   m_PrefabInstance: {fileID: 795261008}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1515125492 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5915573291055368783, guid: 36246e87bb416554986b06c1b290f116, type: 3}
+--- !u!114 &1515125494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1515125499, guid: 36246e87bb416554986b06c1b290f116, type: 3}
   m_PrefabInstance: {fileID: 1689280432}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1515125499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515125492}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca7f356944d1371459e2177b09680407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueName: 
-  charName: 
-  textBubble: {fileID: 0}
-  playerHealthBar: {fileID: 314964429}
-  maxHealth: 20
-  currentHealth: 20
 --- !u!1001 &1689280432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8740,6 +8728,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1515125499, guid: 36246e87bb416554986b06c1b290f116, type: 3}
+      propertyPath: playerHealthBar
+      value: 
+      objectReference: {fileID: 314964429}
     - target: {fileID: 5915573291055368783, guid: 36246e87bb416554986b06c1b290f116, type: 3}
       propertyPath: m_Name
       value: TestPlayer
