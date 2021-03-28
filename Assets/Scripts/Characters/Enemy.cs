@@ -11,9 +11,9 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private SpriteRenderer rend;
-    public int contactPush;
     public bool aggro;
     public float knockbackTime;
+    public int health;
     
     public SpriteRenderer sprite;
 
@@ -123,11 +123,16 @@ public class Enemy : MonoBehaviour
     void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
+            aggro = true;
             Object.Destroy(col.gameObject);
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
             knockbackTime = 0.1f;
             invincibleTime = 0.1f;
+            health--;
+            if (health <= 0) {
+                Object.Destroy(gameObject);
+            }
         }
     }
 
