@@ -114,6 +114,10 @@ public class Enemy : MonoBehaviour
             col.gameObject.GetComponent<ProtoMovement>().knockbackTime = .2f;
             col.gameObject.GetComponent<ProtoMovement>().invincibleTime = 1f;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1000, ForceMode2D.Impulse);
+
+            col.gameObject.GetComponent<Player>().currentHealth--;
+            col.gameObject.GetComponent<Player>().UpdatePlayerHealth();
+
             Debug.Log(direction * 100);
         }
         
