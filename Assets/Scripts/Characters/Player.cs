@@ -59,4 +59,6 @@ public class Player : Character
     {
         movementScript.CanMove = !freeze;
     }
+
+    
 }

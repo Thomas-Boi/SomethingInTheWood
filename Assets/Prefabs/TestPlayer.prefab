@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5915573291055368816}
-  - component: {fileID: 9168558832887905080}
   - component: {fileID: 4469326730499437926}
   - component: {fileID: 189174470772760378}
-  m_Layer: 0
+  - component: {fileID: 9168558832887905080}
+  - component: {fileID: 1515125499}
+  m_Layer: 9
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,20 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9168558832887905080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915573291055368783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe92f6eb097d6d441a5385070acca8df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 20
-  rb: {fileID: 4469326730499437926}
 --- !u!50 &4469326730499437926
 Rigidbody2D:
   serializedVersion: 4
@@ -61,8 +48,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 11.408758
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -97,6 +84,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2228339, y: 3.539977}
   m_EdgeRadius: 0
+--- !u!114 &9168558832887905080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915573291055368783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe92f6eb097d6d441a5385070acca8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 20
+  rb: {fileID: 4469326730499437926}
+  knockbackTime: 0
+  invincibleTime: 0
+  sprite: {fileID: 2486550697128720299}
+--- !u!114 &1515125499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915573291055368783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7f356944d1371459e2177b09680407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  textBubble: {fileID: 0}
+  playerHealthBar: {fileID: 0}
+  maxHealth: 20
+  currentHealth: 20
 --- !u!1 &6247569879185796626
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +130,7 @@ GameObject:
   - component: {fileID: 2230728819114915320}
   - component: {fileID: 2674328102332238746}
   - component: {fileID: 6897588211943531541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -268,9 +289,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6303650724744954231, guid: eeebcb54ff84c154f9a29dbc3835b93e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8443612753709371478, guid: eeebcb54ff84c154f9a29dbc3835b93e, type: 3}
       propertyPath: m_TagString
       value: PlayerGunChamber
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443612753709371478, guid: eeebcb54ff84c154f9a29dbc3835b93e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeebcb54ff84c154f9a29dbc3835b93e, type: 3}
@@ -352,5 +381,10 @@ PrefabInstance:
 --- !u!4 &902336382313498788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7459116194059395688, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
+  m_PrefabInstance: {fileID: 7710624907284130508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2486550697128720299 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5297258110244117863, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
   m_PrefabInstance: {fileID: 7710624907284130508}
   m_PrefabAsset: {fileID: 0}

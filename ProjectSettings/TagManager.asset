@@ -10,6 +10,7 @@ TagManager:
   - PlayerBullet
   - Interactable
   - QuestItem
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - 
   - FriendlyProjectiles
   - Player
-  - 
-  - 
+  - Enemy
+  - Walls
   - 
   - 
   - 
