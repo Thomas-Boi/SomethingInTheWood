@@ -22,16 +22,28 @@ public class DialogueDisplayer : MonoBehaviour
 
         // show the first dialogue and pass the quest name to be created when
         // dialogue ends.
-        DialogueEndedEventArgs args = new DialogueEndedEventArgs();
-        args.questName = dialogueData.questName;
-        dialogueElem.StartDialogue(dialogueData.dialogues, args);
+        dialogueElem.StartDialogue(dialogueData.dialogues);
         dialogueElem.NextDialogue();
 
+        // some dialogues don't have a quest to trigger after
         if (dialogueData.questName != "")
         {
-            dialogueElem.DialogueEnded += questManager.AddQuest;
+            RegisterQuestOnDiaglogueEnd(dialogueElem, dialogueData);
         }
         return dialogueElem;
+    }
+
+    /// <summary>
+    /// Register the add quest code when dialogue ends.
+    /// </summary>
+    /// <param name="dialogueElem"></param>
+    /// <param name="dialogueData"></param>
+    private void RegisterQuestOnDiaglogueEnd(DialogueUI dialogueElem, DialogueData dialogueData) 
+    {
+        DialogueEndedEventArgs args = new DialogueEndedEventArgs();
+        args.questName = dialogueData.questName;
+        dialogueElem.args = args;
+        dialogueElem.DialogueEnded += questManager.AddQuest;
     }
 
 }

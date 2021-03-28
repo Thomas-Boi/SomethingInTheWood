@@ -19,7 +19,7 @@ public class DialogueUI : MonoBehaviour
 
     // holds a quest name that will be added to
     // the quest manager when the dialogue ends.
-    private DialogueEndedEventArgs args;
+    public DialogueEndedEventArgs args;
 
     public event EventHandler<DialogueEndedEventArgs> DialogueEnded;
 
@@ -31,13 +31,9 @@ public class DialogueUI : MonoBehaviour
     /// <param name="dialogues">
     /// The dialogues that will be displayed.
     /// </param>
-    /// <param name="args">
-    /// The args that will be passed to the event handler. 
-    /// </param>
-    public void StartDialogue(DialogueStruct[] dialogues, DialogueEndedEventArgs args)
+    public void StartDialogue(DialogueStruct[] dialogues)
     {
         this.dialogues = dialogues;
-        this.args = args;
         curScriptIndex = 0;
     }
 

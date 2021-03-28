@@ -3166,6 +3166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueName: 
+  charName: John
   textBubble: {fileID: 8681478032158779033, guid: b51d5baab462539409281d3250524160, type: 3}
 --- !u!1001 &795261008
 PrefabInstance:
@@ -8727,6 +8728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueName: 
+  charName: 
   textBubble: {fileID: 0}
   playerHealthBar: {fileID: 314964429}
   maxHealth: 20

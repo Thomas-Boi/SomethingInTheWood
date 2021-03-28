@@ -9,9 +9,30 @@ public class QuestManager : MonoBehaviour
 
     private ArrayList activeQuests;
 
-    public void Start() 
+    // margin for the each quest ui on canvas
+    const int Y_OFFSET = -40;
+
+    // the y position of the first quest
+    const float FIRST_QUEST_Y_POS = -63.6f;
+
+    public void Awake() 
     {
         activeQuests = new ArrayList();
+    }
+
+    /// <summary>
+    /// Wrapper for the AddQuest(string) method. To be used as a
+    /// callback for when a dialogue ends.
+    /// </summary>
+    /// <param name="srcObject">
+    /// The object that called this callback.
+    /// </param>
+    ///  <param name="args">
+    /// The event handler object containing the questName.
+    /// </param>
+    public void AddQuest(object srcObject, DialogueEndedEventArgs args)
+    {
+        AddQuest(args.questName);
     }
 
     /// <summary>
@@ -35,6 +56,7 @@ public class QuestManager : MonoBehaviour
         }
         quest.StartQuest(detail);
         activeQuests.Add(quest);
+        DisplayQuests();
         ToggleQuestItemInteractable(detail);
     }
 
@@ -53,18 +75,17 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Wrapper for the AddQuest(string) method. To be used as a
-    /// callback for when a dialogue ends.
+    /// Display the quests on the scene to ensure they are laid out right.
+    /// This should be called after the activeQuests is changed.
     /// </summary>
-    /// <param name="srcObject">
-    /// The object that called this callback.
-    /// </param>
-    ///  <param name="args">
-    /// The event handler object containing the questName.
-    /// </param>
-    public void AddQuest(object srcObject, DialogueEndedEventArgs args)
+    private void DisplayQuests()
     {
-        AddQuest(args.questName);
+        for (int i = 0; i < activeQuests.Count; i++)
+        {
+            RectTransform questTransform = ((QuestUI) activeQuests[i]).GetComponent<RectTransform>();
+            Vector2 newPos = new Vector2(questTransform.anchoredPosition.x, FIRST_QUEST_Y_POS + i * Y_OFFSET);
+            questTransform.anchoredPosition = newPos;
+        }
     }
 
     /// <summary>
@@ -97,6 +118,7 @@ public class QuestManager : MonoBehaviour
         if (finishedQuest != null)
         {
             activeQuests.Remove(finishedQuest);
+            DisplayQuests();
             return true;
         }
         return false;
