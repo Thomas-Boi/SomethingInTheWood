@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 // holds the Text elements to display a dialogue piece from characters
-public class Dialogue : MonoBehaviour
+public class DialogueUI : MonoBehaviour
 {
     // refs to UI elements
     public Text speakerTxt;
@@ -19,7 +19,7 @@ public class Dialogue : MonoBehaviour
 
     // holds a quest name that will be added to
     // the quest manager when the dialogue ends.
-    private DialogueEndedEventArgs args;
+    public DialogueEndedEventArgs args;
 
     public event EventHandler<DialogueEndedEventArgs> DialogueEnded;
 
@@ -31,13 +31,9 @@ public class Dialogue : MonoBehaviour
     /// <param name="dialogues">
     /// The dialogues that will be displayed.
     /// </param>
-    /// <param name="args">
-    /// The args that will be passed to the event handler. 
-    /// </param>
-    public void StartDialogue(DialogueStruct[] dialogues, DialogueEndedEventArgs args)
+    public void StartDialogue(DialogueStruct[] dialogues)
     {
         this.dialogues = dialogues;
-        this.args = args;
         curScriptIndex = 0;
     }
 

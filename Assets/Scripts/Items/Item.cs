@@ -6,4 +6,5 @@ public abstract class Item : MonoBehaviour
 {
     public string itemName;
     public abstract string Interact();
+
 }

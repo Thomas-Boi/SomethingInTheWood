@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Quest : MonoBehaviour
+/// <summary>
+/// Tracks quest that requires a progress. 
+/// Usually QuestType.KILL or QuestType.ITEM quest
+/// </summary>
+public class ProgressQuestUI : QuestUI
 {
     // refs to UI elements
-    public Text descriptionTxt;
+    // this needs a progress tracker
     public Text progressTxt;
-
-    // hold the dialogues
-    private QuestDetail detail;
-    private int curAmount;
 
     // start a new quest
     // need to call this first after instantiaing a Quest Prefab
-    public void StartQuest(QuestDetail _detail)
+    public new void StartQuest(QuestDetail _detail)
     {
-        detail = _detail;
+        base.StartQuest(_detail);
         curAmount = 0;
-
-        descriptionTxt.text = detail.description;
         progressTxt.text = $"{curAmount}/{detail.amount}";
     }
 
@@ -30,24 +28,12 @@ public class Quest : MonoBehaviour
     /// <returns>
     /// true if quest is completed. Else false.
     /// </returns>
-    public bool UpdateProgress()
+    public override bool UpdateProgress()
     {
         progressTxt.text = $"{++curAmount}/{detail.amount}";
         bool finished = curAmount == detail.amount;
         if (finished) Destroy(gameObject);
         return finished;
-    }
-
-    /// <summary>
-    /// Check where the item is what this quest is looking for.
-    /// </summary>
-    /// <param name="item">
-    /// The Item needs to be checked.
-    /// </param>
-    /// <returns>whether it is what we are looking for.</returns>
-    public bool CheckItem(string itemName)
-    {
-        return itemName == detail.itemName;
     }
 
 }
