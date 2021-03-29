@@ -1,9 +1,9 @@
 {
   "questName": "GatherFirewood",
-	"dialogues": [
+	"mainDialogue": [
 		{
 			"speaker": "Jack",
-			"speech": "H-hi, were you from the tanker too?"
+			"speech": "Hey! Who are you?"
 		},
 		{
 			"speaker": "John",
@@ -41,5 +41,11 @@
 			"speaker": "John",
 			"speech": "Why don't you go around and pick up some wood for the fire? About 8 logs should be enough. Just press E to pick them up."
 		}
-	]
+	],
+  "idleDialogue": [
+		{
+			"speaker": "John",
+			"speech": "Well, what are you waiting for? Just walk around and bring back some wood logs."
+		}
+  ]
 }

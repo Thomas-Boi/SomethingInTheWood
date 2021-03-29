@@ -14,22 +14,31 @@ public class DialogueDisplayer : MonoBehaviour
         questManager = gameObject.GetComponent<QuestManager>();
     }
 
-    public DialogueUI DisplayDialogue(string dialogueName)
+    public DialogueUI DisplayMainDialogue(DialogueData dialogueData)
     {
         var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
-        TextAsset data = Resources.Load<TextAsset>($"Dialogues/{dialogueName}");
-        DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(data.ToString());
 
         // show the first dialogue and pass the quest name to be created when
         // dialogue ends.
-        dialogueElem.StartDialogue(dialogueData.dialogues);
+        dialogueElem.StartDialogue(dialogueData.mainDialogue);
         dialogueElem.NextDialogue();
 
         // some dialogues don't have a quest to trigger after
         if (dialogueData.questName != "")
         {
-            RegisterQuestOnDiaglogueEnd(dialogueElem, dialogueData);
+            RegisterQuestOnDiaglogueEnd(dialogueElem, dialogueData.questName);
         }
+        return dialogueElem;
+    }
+
+    public DialogueUI DisplayIdleDialogue(DialogueData dialogueData)
+    {
+        var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
+
+        // show the first dialogue and pass the quest name to be created when
+        // dialogue ends.
+        dialogueElem.StartDialogue(dialogueData.idleDialogue);
+        dialogueElem.NextDialogue();
         return dialogueElem;
     }
 
@@ -37,11 +46,11 @@ public class DialogueDisplayer : MonoBehaviour
     /// Register the add quest code when dialogue ends.
     /// </summary>
     /// <param name="dialogueElem"></param>
-    /// <param name="dialogueData"></param>
-    private void RegisterQuestOnDiaglogueEnd(DialogueUI dialogueElem, DialogueData dialogueData) 
+    /// <param name="questName"></param>
+    private void RegisterQuestOnDiaglogueEnd(DialogueUI dialogueElem, string questName) 
     {
         DialogueEndedEventArgs args = new DialogueEndedEventArgs();
-        args.questName = dialogueData.questName;
+        args.questName = questName;
         dialogueElem.args = args;
         dialogueElem.DialogueEnded += questManager.AddQuest;
     }
