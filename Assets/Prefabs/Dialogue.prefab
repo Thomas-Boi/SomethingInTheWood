@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8119028653539356939
 RectTransform:
   m_ObjectHideFlags: 0
@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerTxt: {fileID: 1783624918428612570}
   speechTxt: {fileID: 2420992923476274743}
+  profilePic: {fileID: 7099522946119258611}
 --- !u!1 &6772357127411843878
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,11 +18,11 @@ public class StoryTeller : MonoBehaviour
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         questManager.AddQuest("MeetJohnFirstTime");
 
-        player.DialogueName = "Intro";
+        player.SetDialogue("Intro");
         player.TalkOutloud();
 
         John.DisplayTextBubble();
-        John.DialogueName = "ProtoDialogue";
+        John.SetDialogue("MeetJohnFirstTime");
     }
 
 }

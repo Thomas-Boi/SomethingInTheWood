@@ -8,19 +8,16 @@ public class Player : Character
     private Interaction interactionScript;
     private ProtoMovement movementScript;
 
-    // dialogues stuff
-    private DialogueUI curDialogue;
-    private Character characterTalkingWith;
-
     // Player stats
     public HealthBar playerHealthBar;
     public int maxHealth;
     public int currentHealth;
 
-    void Awake()
+    new void Awake()
     {
         interactionScript = new Interaction(this);
         movementScript = GetComponent<ProtoMovement>();
+        base.Awake();
     }
 
     void Start()

@@ -106,7 +106,7 @@ public class QuestManager : MonoBehaviour
                 bool finished = quest.UpdateProgress();
                 if (finished)
                 {
-                    finishedQuest = quest;
+                    finishedQuest = quest; // can't delete while looping
                     break;
                 }
             }
@@ -115,6 +115,10 @@ public class QuestManager : MonoBehaviour
         if (finishedQuest != null)
         {
             activeQuests.Remove(finishedQuest);
+            if (finishedQuest.detail.nextQuestName != "")
+            {
+                AddQuest(finishedQuest.detail.nextQuestName);
+            }
             DisplayQuests();
             return true;
         }
