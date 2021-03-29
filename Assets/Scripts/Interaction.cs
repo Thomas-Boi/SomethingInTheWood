@@ -28,7 +28,6 @@ public class Interaction
     private Character characterTalkingWith;
 
     // weapon
-    private 
     public Image weaponImage;
 
 
