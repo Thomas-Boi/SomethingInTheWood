@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - PlayerBullet
   - Interactable
+  - QuestItem
   - Enemy
   layers:
   - Default

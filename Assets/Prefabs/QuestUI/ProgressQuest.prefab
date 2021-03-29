@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 349, y: 174.90001}
-  m_SizeDelta: {x: 71.10604, y: 41.669357}
+  m_AnchoredPosition: {x: 0.000012398, y: -4.1}
+  m_SizeDelta: {x: 44.990807, y: 20}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6778059656808237011
 CanvasRenderer:
@@ -67,10 +67,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6778059657668601972}
   - component: {fileID: 3953570137186242052}
   m_Layer: 5
-  m_Name: Quest
+  m_Name: ProgressQuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,11 +112,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 237, y: 40}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &3953570137186242052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6778059657668601973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fc616b870dfc747b4165eec7bb05c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 20a0eeff0c3572b40a18766bfac5e476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionTxt: {fileID: 6778059657997818956}
@@ -165,8 +165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 277.89, y: 174.9}
-  m_SizeDelta: {x: 144.72183, y: 41.669334}
+  m_AnchoredPosition: {x: -44.991, y: -4.1}
+  m_SizeDelta: {x: 144.72183, y: 20}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6778059657997818947
 CanvasRenderer:
@@ -198,10 +198,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 2
     m_AlignByGeometry: 0

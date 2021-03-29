@@ -9,11 +9,15 @@ public class StoryTeller : MonoBehaviour
 {
     public Player player;
     public Character John;
+    private QuestManager questManager;
 
     // Start is called before the first frame update
     // set up all the dialogues and quests
     void Start()
     { // in the future, hopefully we can load this using a scriptable object.
+        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        questManager.AddQuest("MeetJohnFirstTime");
+
         player.DialogueName = "Intro";
         player.TalkOutloud();
 
@@ -21,9 +25,4 @@ public class StoryTeller : MonoBehaviour
         John.DialogueName = "ProtoDialogue";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

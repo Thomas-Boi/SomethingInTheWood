@@ -4,22 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class ProtoInteraction
-{
 
+/// <summary>
+/// Handle the keyboard inputs and player 
+/// interaction with the world.
+/// </summary>
+public class Interaction
+{
+    private readonly Player player;
+
+    // interaction
+    // the player can only interact with one object at a time
     private float interactRange = 55.0f;
     private GameObject[] interactables;
-
-    // the player can only interact with one object at a time
     private GameObject interactObject;
     private Color objectColor;
     private bool promptEnabled;
 
     private QuestManager questManager;
 
-    private readonly Player player;
+    // dialogues
+    private DialogueUI curDialogue;
+    private Character characterTalkingWith;
 
-    public ProtoInteraction(Player player)
+    // weapon
+    public Image weaponImage;
+
+
+    public Interaction(Player player)
     {
         this.player = player;
         // find all things that can be interact with
@@ -35,7 +47,7 @@ public class ProtoInteraction
     /// Whether the player is talking (either to themselves
     /// or others).
     /// </param>
-    public void Update(bool isTalking)
+    public void Update()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
 
@@ -65,19 +77,20 @@ public class ProtoInteraction
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isTalking)
+            if (curDialogue != null)
             {
-                player.HandleDialogue(null); // player already know they are talking
+                ContinueTalking();
                 return;
             }
 
-            if (interactObject?.GetComponent<Character>()) // is a character
+            if (!interactObject) return;
+
+            if (interactObject.GetComponent<Character>()) // is a character
             {
-                player.HandleDialogue(interactObject.GetComponent<Character>());
-                return;
+                StartTalking(interactObject.GetComponent<Character>());
             }
 
-            if (interactObject?.GetComponent<Item>()) // is an item
+            if (interactObject.GetComponent<Item>()) // is an item
             {
                 string itemName = interactObject.GetComponent<Item>().Interact();
                 if (questManager.CheckQuestItem(itemName))
@@ -90,6 +103,38 @@ public class ProtoInteraction
         }
 
         // if kill, get object name, pass to quest manager
+    }
+
+    /// <summary>
+    /// Continue the dialogue if there's one. Else, 
+    /// create a new Dialogue by talking to the character.
+    /// </summary>
+    /// <param name="character">
+    /// The character we are talking to.
+    /// </param>
+    /// <returns>
+    /// True if the dialogue is finished. Else false.
+    /// </returns>
+    public void StartTalking(Character character)
+    {
+        player.FreezeMovement(true);
+        curDialogue = character.Talk();
+        characterTalkingWith = character;
+    }
+
+    /// <summary>
+    /// Continue talking with the current dialogue.
+    /// </summary>
+    public void ContinueTalking()
+    {
+        bool hasNextDialogue = curDialogue.NextDialogue();
+        if (!hasNextDialogue)
+        {
+            questManager.CheckQuestItem(characterTalkingWith.charName);
+            curDialogue = null;
+            characterTalkingWith = null;
+            player.FreezeMovement(false);
+        }
     }
 
     private bool ObjectInRange()

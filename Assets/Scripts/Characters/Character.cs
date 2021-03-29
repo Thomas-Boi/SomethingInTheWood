@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public string DialogueName;
-
+    public string charName;
     public GameObject textBubble;
 
     /// <summary>

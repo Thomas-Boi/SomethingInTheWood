@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Player : Character
 {
-    private ProtoInteraction interactionScript;
-
+    // helper scripts
+    private Interaction interactionScript;
     private ProtoMovement movementScript;
 
+    // dialogues stuff
     private DialogueUI curDialogue;
-
-    private QuestManager questManager;
+    private Character characterTalkingWith;
 
     // Player stats
     public HealthBar playerHealthBar;
@@ -19,21 +19,20 @@ public class Player : Character
 
     void Awake()
     {
-        interactionScript = new ProtoInteraction(this);
+        interactionScript = new Interaction(this);
         movementScript = GetComponent<ProtoMovement>();
-        questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
     }
 
     void Start()
     {
+
         playerHealthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool isTalking = curDialogue != null;
-        interactionScript.Update(isTalking);
+        interactionScript.Update();
         UpdatePlayerHealth();
     }
 
@@ -46,36 +45,20 @@ public class Player : Character
     }
 
     /// <summary>
-    /// Continue the dialogue if there's one. Else, 
-    /// create a new Dialogue by talking to the character.
-    /// </summary>
-    /// <param name="character">
-    /// The character we are talking to.
-    /// </param>
-    public void HandleDialogue(Character character)
-    {
-        if (curDialogue)
-        { // continue dialogue
-            bool hasNextDialogue = curDialogue.NextDialogue();
-            if (!hasNextDialogue)
-            {// dialogue finished
-                curDialogue = null;
-                movementScript.CanMove = true;
-            }
-        }
-        else
-        { // start a dialogue
-            movementScript.CanMove = false;
-            curDialogue = character.Talk();
-        }
-    }
-
-    /// <summary>
     /// Make the player talk outloud to themselves.
     /// </summary>
     public void TalkOutloud()
     {
-        HandleDialogue(this);
+        interactionScript.StartTalking(this);
+    }
+
+    /// <summary>
+    /// Set whether the player movement is freezed.
+    /// </summary>
+    /// <param name="freeze"></param>
+    public void FreezeMovement(bool freeze)
+    {
+        movementScript.CanMove = !freeze;
     }
 
     
