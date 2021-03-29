@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class ProtoInteraction
+public class Interaction
 {
     private readonly Player player;
 
@@ -22,7 +22,7 @@ public class ProtoInteraction
     private DialogueUI curDialogue;
     private Character characterTalkingWith;
 
-    public ProtoInteraction(Player player)
+    public Interaction(Player player)
     {
         this.player = player;
         // find all things that can be interact with

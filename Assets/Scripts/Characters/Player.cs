@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
     // helper scripts
-    private ProtoInteraction interactionScript;
+    private Interaction interactionScript;
     private ProtoMovement movementScript;
 
     // dialogues stuff
@@ -19,12 +19,13 @@ public class Player : Character
 
     void Awake()
     {
-        interactionScript = new ProtoInteraction(this);
+        interactionScript = new Interaction(this);
         movementScript = GetComponent<ProtoMovement>();
     }
 
     void Start()
     {
+
         playerHealthBar.SetMaxHealth(maxHealth);
     }
 

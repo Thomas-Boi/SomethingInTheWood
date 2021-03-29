@@ -10,10 +10,7 @@ public class QuestManager : MonoBehaviour
     private ArrayList activeQuests;
 
     // margin for the each quest ui on canvas
-    const int Y_OFFSET = -40;
-
-    // the y position of the first quest
-    const float FIRST_QUEST_Y_POS = -63.6f;
+    const int Y_OFFSET = -20;
 
     public void Awake() 
     {
@@ -83,7 +80,7 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < activeQuests.Count; i++)
         {
             RectTransform questTransform = ((QuestUI) activeQuests[i]).GetComponent<RectTransform>();
-            Vector2 newPos = new Vector2(questTransform.anchoredPosition.x, FIRST_QUEST_Y_POS + i * Y_OFFSET);
+            Vector2 newPos = new Vector2(questTransform.anchoredPosition.x, i * Y_OFFSET);
             questTransform.anchoredPosition = newPos;
         }
     }
