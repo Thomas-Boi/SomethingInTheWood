@@ -22,7 +22,7 @@ public class StoryTeller : MonoBehaviour
         player.TalkOutloud();
 
         John.DisplayTextBubble();
-        John.DialogueName = "ProtoDialogue";
+        John.DialogueName = "MeetJohnFirstTime";
     }
 
 }
