@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+
+/// <summary>
+/// Handle the keyboard inputs and player 
+/// interaction with the world.
+/// </summary>
 public class Interaction
 {
     private readonly Player player;
@@ -21,6 +26,11 @@ public class Interaction
     // dialogues
     private DialogueUI curDialogue;
     private Character characterTalkingWith;
+
+    // weapon
+    private 
+    public Image weaponImage;
+
 
     public Interaction(Player player)
     {
