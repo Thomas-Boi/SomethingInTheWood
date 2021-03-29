@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
         Vector2 size = GetComponent<Renderer>().bounds.size;
         Vector2 position = (Vector2)transform.position + 2 * size;
         position.y -= size.y / 2;
-        Instantiate(textBubblePrefab, position, Quaternion.identity);
+        textBubble = Instantiate(textBubblePrefab, position, Quaternion.identity);
     }
 
     /// <summary>

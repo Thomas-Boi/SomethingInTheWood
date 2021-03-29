@@ -10,8 +10,9 @@ using UnityEngine.UI;
 public class ProgressQuestUI : QuestUI
 {
     // refs to UI elements
-    // this needs a progress tracker
     public Text progressTxt;
+
+    protected int curAmount;
 
     // start a new quest
     // need to call this first after instantiaing a Quest Prefab
