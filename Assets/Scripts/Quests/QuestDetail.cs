@@ -9,6 +9,9 @@ public class QuestDetail : ScriptableObject
     public string itemName;
     public int amount;
     public QuestType questType;
+
+    // allow chaining of quests if this quest is completed
+    public string nextQuestName;
 }
 
 /// <summary>

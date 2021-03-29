@@ -16,3 +16,4 @@ MonoBehaviour:
   itemName: WoodLog
   amount: 8
   questType: 1
+  nextQuestName: GiveJohnFirewood
