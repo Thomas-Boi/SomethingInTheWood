@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd419b103debcba4ba3162fb4e587f12, type: 3}
   m_Name: GatherFirewood
   m_EditorClassIdentifier: 
+  questName: GatherFirewood
   description: Gather Firewoods
   itemName: WoodLog
   amount: 8

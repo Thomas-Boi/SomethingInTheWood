@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd419b103debcba4ba3162fb4e587f12, type: 3}
   m_Name: MeetJohnFirstTime
   m_EditorClassIdentifier: 
+  questName: MeetJohnFirstTime
   description: Talk to the stranger
   itemName: John
   amount: 0
   questType: 0
+  nextQuestName: 
