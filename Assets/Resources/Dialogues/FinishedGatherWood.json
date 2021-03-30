@@ -1,0 +1,14 @@
+{
+  "questName": "",
+	"mainDialogue": [
+		{
+			"speaker": "Jack",
+			"speech": "Hey John, I got the wood."
+		},
+		{
+			"speaker": "John",
+			"speech": "Great, give it here and I’ll set everything up."
+		}
+	],
+  "idleDialogue": []
+}

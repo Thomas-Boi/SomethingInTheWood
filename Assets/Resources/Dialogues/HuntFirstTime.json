@@ -1,0 +1,55 @@
+{
+  "questName": "huntBoars",
+	"mainDialogue": [
+		{
+			"speaker": "Jack",
+			"speech": "Wow that was quick! Have you done this before?"
+		},
+		{
+			"speaker": "John",
+			"speech": "One of the more useful things you get to learn in the military is findin’ a way to eat and sleep pretty much anywhere. Done this more times than I can count bud."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Huh, I’ve never learned anything like that. Maybe I should have gone to the military."
+		},
+		{
+			"speaker": "John",
+			"speech": "Well then, I guess you should watch and learn then. Speakin’ of learnin’ have you ever actually shot that thing?"
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Of course I have"
+		},
+		{
+			"speaker": "John",
+			"speech": "That 14 day backyard target practice that they make you do doesn’t count..."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Uhh, No I haven’t then… I think I did okay during that though!"
+		},
+		{
+			"speaker": "John",
+			"speech": "That’s alright... I kinda saw that coming. If we’re gonna survive together you’re gonna have to learn to hunt. Follow my guidance and we’ll be okay."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Alright, I can try my best..."
+		},
+		{
+			"speaker": "John",
+			"speech": "Alright kid, Take aim at that group of boars, they are slow moving compared to deer but they’ll hurt you when they’re pissed…"
+		},
+		{
+			"speaker": "John",
+			"speech": "Try to take out at least 2 of them, let’s see what you got."
+		}
+	],
+  "idleDialogue": [
+	{
+		"speaker": "John",
+		"speech": "Aren't you hungry? We can't eat till you get me two boars. Get back to the hunt."
+	}
+]
+}
