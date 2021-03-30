@@ -83,7 +83,7 @@
 		},
 		{
 			"speaker": "John",
-			"speech": "That’s right, bring me back <gatherAmount> pieces of wood and meet me back here. Once we have a fire and some shelter over our heads, we’ll think about food."
+			"speech": "That’s right, bring me back 8 pieces of wood and meet me back here. Once we have a fire and some shelter over our heads, we’ll think about food."
 		}
 	],
   "idleDialogue": [

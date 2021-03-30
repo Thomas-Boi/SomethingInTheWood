@@ -48,6 +48,7 @@ public class Character : MonoBehaviour
     {
         TextAsset data = Resources.Load<TextAsset>($"Dialogues/{dialogueResourceName}");
         curDialogue = JsonUtility.FromJson<DialogueData>(data.ToString());
+        spokenMainDialogue = false;
     }
 
     public void SetQuestDialogueDict(string jsonResourceName)
@@ -55,14 +56,13 @@ public class Character : MonoBehaviour
         //TextAsset data = Resources.Load<TextAsset>(jsonResourceName);
         //questDialogueDict = JsonUtility.FromJson<CharacterQuestDialogueDict>(data.ToString());
         //Debug.Log(questDialogueDict.dict["a"]);
-        questDialogueDict.dict.Add("GatherFirewood", "MeetJohnFirstTime");
+        questDialogueDict.dict.Add("GatherFirewood", "FinishedGatherWood");
     }
 
     public void OnQuestEndHandler(object source, QuestEndedEventArgs args)
     {
         string dialogueName;
         questDialogueDict.dict.TryGetValue(args.questName, out dialogueName);
-        Debug.Log(dialogueName);
         if (dialogueName != null)
         {
             SetDialogue(dialogueName);
