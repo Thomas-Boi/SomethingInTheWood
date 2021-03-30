@@ -3,43 +3,87 @@
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
-			"speech": "Hey! Who are you?"
+			"speech": "H-hey! You’re from the ship, right? Obviously.."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Where is everybody else? Are they OK? Are you OK? God, what are we going to do..."
 		},
 		{
 			"speaker": "John",
-			"speech": "Jack, it's me, John."
-		},
-		{
-			"speaker": "Jack",
-			"speech": "O-oh, sorry boss. I'm glad to see you though. How are you doing?"
+			"speech": "...Calm down, kid."
 		},
 		{
 			"speaker": "John",
-			"speech": "Besides losing my gun and my radio, I'm just peachy. How bout you kid?"
+			"speech": "I’ll tell you what I can but first, what’s your name?"
 		},
 		{
 			"speaker": "Jack",
-			"speech": "Well, I'm ok I think. My head hurts from the explosion though."
-		},
-		{
-			"speaker": "Jack",
-			"speech": "Are there other survivors?"
+			"speech": "Okay… My name’s Jack."
 		},
 		{
 			"speaker": "John",
-			"speech": "Yes, we set up camp about 2 hours away from here. How the hell did you wash up here so far away from everyone else?"
+			"speech": "Well mine’s John, how old are ya?"
 		},
 		{
 			"speaker": "Jack",
-			"speech": "I'm not too sure... I remembering grabbing on something and just swim towards the island."
+			"speech": "I’m 21."
+		},
+		{
+			"speaker": "John",
+			"speech": "You do seem younger than most... Can you walk kid? We’re gonna have to get movin’ soon."
 		},	
 		{
-			"speaker": "John",
-			"speech": "Well, it's too late to go back now. It's getting dark. Let's set up camp here and we'll go to the group tomorrow morning."
+			"speaker": "Jack",
+			"speech": "Yea sure thing, all I got is my rifle to carry anyways..."
 		},
 		{
 			"speaker": "John",
-			"speech": "Why don't you go around and pick up some wood for the fire? About 8 logs should be enough. Just press E to pick them up."
+			"speech": "Well be prepared to carry a heck of a lot more, we’re gonna set up shelter for the night somewhere past the tree line. I’m gonna need you to gather wood for me..."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Why do we need to make shelter now? Shouldn’t we look for others?"
+		},
+		{
+			"speaker": "John",
+			"speech": "We will, kid... Listen, I don’t know how long you’ve been out but we’ve been here for one night already, no clue how you’ve been restin’ easy till now… Aren’t you hungry?"
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Now that you mention it, I’m starving… Have I really been out that long?"
+		},
+		{
+			"speaker": "John",
+			"speech": "Seems like it... I was actually with a group last night. I was tasked with watching the shore in case more of us wash up…"
+		},
+		{
+			"speaker": "John",
+			"speech": "By the time I had come back to check in with em’ this morning they were all gone… Not sure why or when they had moved but regardless, they couldn’t have made it far."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Wait, they just disappeared? What could have happened?"
+		},
+		{
+			"speaker": "John",
+			"speech": "Like I said kid, I don’t know. They wouldn’t have abandoned me for just no reason though…Probably saw some bears."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Alright… So is there anything else we know? Where are we?"
+		},
+		{
+			"speaker": "John",
+			"speech": "No idea kid... Don’t know where we are or how the ship went down when it did. Just be sure to listen to me and we’ll work out fine, only a matter of time before someone finds us."
+		},
+		{
+			"speaker": "Jack",
+			"speech": "Alright John… So gather wood?"
+		},
+		{
+			"speaker": "John",
+			"speech": "That’s right, bring me back <gatherAmount> pieces of wood and meet me back here. Once we have a fire and some shelter over our heads, we’ll think about food."
 		}
 	],
   "idleDialogue": [
