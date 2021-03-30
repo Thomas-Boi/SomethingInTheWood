@@ -10,5 +10,10 @@
 			"speech": "Great, give it here and I’ll set everything up."
 		}
 	],
-  "idleDialogue": []
+  "idleDialogue": [
+		{
+			"speaker": "John",
+			"speech": "Gimme a few minutes..."
+		}
+  ]
 }
