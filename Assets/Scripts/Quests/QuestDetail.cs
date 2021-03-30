@@ -5,10 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
 public class QuestDetail : ScriptableObject
 {
+    public string questName;
     public string description;
     public string itemName;
     public int amount;
     public QuestType questType;
+
+    // allow chaining of quests if this quest is completed
+    public string nextQuestName;
 }
 
 /// <summary>

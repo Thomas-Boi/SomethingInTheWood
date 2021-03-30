@@ -1,6 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+public class QuestEndedEventArgs : EventArgs
+{
+    /// <summary>
+    /// The name of a QuestDetail ScriptableObject.
+    /// </summary>
+    public string questName;
+}
 
 public class QuestManager : MonoBehaviour
 {
@@ -11,6 +19,12 @@ public class QuestManager : MonoBehaviour
 
     // margin for the each quest ui on canvas
     const int Y_OFFSET = -20;
+
+    // holds a quest name that will be added to
+    // the quest manager when the dialogue ends.
+    public QuestEndedEventArgs args;
+
+    public event EventHandler<QuestEndedEventArgs> OnQuestEnded;
 
     public void Awake() 
     {
@@ -106,7 +120,7 @@ public class QuestManager : MonoBehaviour
                 bool finished = quest.UpdateProgress();
                 if (finished)
                 {
-                    finishedQuest = quest;
+                    finishedQuest = quest; // can't delete while looping
                     break;
                 }
             }
@@ -115,7 +129,16 @@ public class QuestManager : MonoBehaviour
         if (finishedQuest != null)
         {
             activeQuests.Remove(finishedQuest);
+            string nextQuest = finishedQuest.detail.nextQuestName;
+            if (nextQuest != "" && nextQuest != null)
+            {
+                AddQuest(finishedQuest.detail.nextQuestName);
+            }
             DisplayQuests();
+
+            var args = new QuestEndedEventArgs();
+            args.questName = finishedQuest.detail.questName;
+            OnQuestEnded?.Invoke(this, args);
             return true;
         }
         return false;

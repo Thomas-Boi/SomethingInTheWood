@@ -8,9 +8,7 @@ public abstract class QuestUI : MonoBehaviour
     // refs to UI elements
     public Text descriptionTxt;
 
-    // hold the dialogues
-    protected QuestDetail detail;
-    protected int curAmount;
+    public QuestDetail detail;
 
     public void StartQuest(QuestDetail _detail)
     {

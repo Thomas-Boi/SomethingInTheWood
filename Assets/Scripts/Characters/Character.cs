@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public string DialogueName;
+    // dialogues
+    private DialogueData curDialogue;
+    // there are two types: the main dialogue
+    // vs the idle dialogue after the main one
+    // is spoken
+    private bool spokenMainDialogue;
+    private DialogueDisplayer dialogueDisplayer;
+    private CharacterQuestDialogueDict questDialogueDict;
+
+    public GameObject textBubblePrefab;
+    private GameObject textBubble;
     public string charName;
-    public GameObject textBubble;
+
+    public void Awake()
+    {
+        dialogueDisplayer = GameObject.Find("Canvas").GetComponent<DialogueDisplayer>();
+        spokenMainDialogue = false;
+        QuestManager questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        questManager.OnQuestEnded += OnQuestEndHandler;
+
+        questDialogueDict = new CharacterQuestDialogueDict();
+        questDialogueDict.dict = new Dictionary<string, string>();
+    }
 
     /// <summary>
     /// Display a text bubble near the player's head top right.
@@ -18,7 +38,35 @@ public class Character : MonoBehaviour
         Vector2 size = GetComponent<Renderer>().bounds.size;
         Vector2 position = (Vector2)transform.position + 2 * size;
         position.y -= size.y / 2;
-        Instantiate(textBubble, position, Quaternion.identity);
+        textBubble = Instantiate(textBubblePrefab, position, Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Set the dialogue that this character will talk about.
+    /// </summary>
+    public void SetDialogue(string dialogueResourceName)
+    {
+        TextAsset data = Resources.Load<TextAsset>($"Dialogues/{dialogueResourceName}");
+        curDialogue = JsonUtility.FromJson<DialogueData>(data.ToString());
+        spokenMainDialogue = false;
+    }
+
+    public void SetQuestDialogueDict(string jsonResourceName)
+    {
+        //TextAsset data = Resources.Load<TextAsset>(jsonResourceName);
+        //questDialogueDict = JsonUtility.FromJson<CharacterQuestDialogueDict>(data.ToString());
+        //Debug.Log(questDialogueDict.dict["a"]);
+        questDialogueDict.dict.Add("GatherFirewood", "FinishedGatherWood");
+    }
+
+    public void OnQuestEndHandler(object source, QuestEndedEventArgs args)
+    {
+        string dialogueName;
+        questDialogueDict.dict.TryGetValue(args.questName, out dialogueName);
+        if (dialogueName != null)
+        {
+            SetDialogue(dialogueName);
+        }
     }
 
     /// <summary>
@@ -29,7 +77,17 @@ public class Character : MonoBehaviour
     /// </returns>
     public DialogueUI Talk() 
     {
-        return GameObject.Find("Canvas")
-            .GetComponent<DialogueDisplayer>().DisplayDialogue(DialogueName);
+        if (textBubble)
+        {
+            Destroy(textBubble);
+        }
+
+        if (spokenMainDialogue)
+        {
+            return dialogueDisplayer.DisplayIdleDialogue(curDialogue);
+        }
+        spokenMainDialogue = true;
+
+        return dialogueDisplayer.DisplayMainDialogue(curDialogue);
     }
 }
