@@ -18,7 +18,7 @@ public class QuestManager : MonoBehaviour
     private ArrayList activeQuests;
 
     // margin for the each quest ui on canvas
-    const int Y_OFFSET = -20;
+    const int Y_OFFSET = -30;
 
     // holds a quest name that will be added to
     // the quest manager when the dialogue ends.
