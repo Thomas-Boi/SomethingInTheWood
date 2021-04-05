@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The args for a dialogue end event.
+/// Contains the dialogueData of the dialogue.
+/// </summary>
+public class DialogueEventArgs : EventArgs
+{
+    /// <summary>
+    /// The name of a QuestDetail ScriptableObject.
+    /// </summary>
+    public DialogueData dialogueData;
+}
 
 // holds the Text elements to display a dialogue piece from characters
 public class DialogueUI : MonoBehaviour
@@ -17,11 +28,8 @@ public class DialogueUI : MonoBehaviour
     private DialogueStruct[] dialogues;
     private int curScriptIndex;
 
-    // holds a quest name that will be added to
-    // the quest manager when the dialogue ends.
-    public DialogueEndedEventArgs args;
-
-    public event EventHandler<DialogueEndedEventArgs> DialogueEnded;
+    // holds the DialogueData where this dialogue came from
+    public DialogueEventArgs args;
 
     /// <summary>
     /// start a new series of dialogues.
@@ -31,10 +39,14 @@ public class DialogueUI : MonoBehaviour
     /// <param name="dialogues">
     /// The dialogues that will be displayed.
     /// </param>
-    public void StartDialogue(DialogueStruct[] dialogues)
+    public void StartDialogue(DialogueStruct[] dialogues, DialogueData data)
     {
         this.dialogues = dialogues;
         curScriptIndex = 0;
+        args = new DialogueEventArgs
+        {
+            dialogueData = data
+        };
     }
 
 
@@ -68,17 +80,9 @@ public class DialogueUI : MonoBehaviour
         catch (IndexOutOfRangeException)
         {
             Destroy(gameObject);
-            DialogueEnded?.Invoke(this, args);
+            EventTracker.GetTracker().DialogueHasEnded(this, args);
             return false;
         }
         return true;
     }
-}
-
-public class DialogueEndedEventArgs : EventArgs
-{
-    /// <summary>
-    /// The name of a QuestDetail ScriptableObject.
-    /// </summary>
-    public string questName;
 }

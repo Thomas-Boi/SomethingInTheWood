@@ -1,14 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-public class QuestEndedEventArgs : EventArgs
-{
-    /// <summary>
-    /// The name of a QuestDetail ScriptableObject.
-    /// </summary>
-    public string questName;
-}
 
 public class QuestManager : MonoBehaviour
 {
@@ -18,22 +10,19 @@ public class QuestManager : MonoBehaviour
     private ArrayList activeQuests;
 
     // margin for the each quest ui on canvas
-    const int Y_OFFSET = -20;
-
-    // holds a quest name that will be added to
-    // the quest manager when the dialogue ends.
-    public QuestEndedEventArgs args;
-
-    public event EventHandler<QuestEndedEventArgs> OnQuestEnded;
+    const int Y_OFFSET = -30;
 
     public void Awake() 
     {
         activeQuests = new ArrayList();
+        // subscribe to DialogueEnded event
+        EventTracker.GetTracker().DialogueEndedHandler += AddQuest;
     }
 
     /// <summary>
     /// Wrapper for the AddQuest(string) method. To be used as a
-    /// callback for when a dialogue ends.
+    /// callback for when a dialogue ends and we want to add a
+    /// new quest.
     /// </summary>
     /// <param name="srcObject">
     /// The object that called this callback.
@@ -41,9 +30,10 @@ public class QuestManager : MonoBehaviour
     ///  <param name="args">
     /// The event handler object containing the questName.
     /// </param>
-    public void AddQuest(object srcObject, DialogueEndedEventArgs args)
+    public void AddQuest(object srcObject, DialogueEventArgs args)
     {
-        AddQuest(args.questName);
+        if (string.IsNullOrEmpty(args.dialogueData.nextQuest)) return;
+        AddQuest(args.dialogueData.nextQuest);
     }
 
     /// <summary>
@@ -54,7 +44,14 @@ public class QuestManager : MonoBehaviour
     /// </param>
     public void AddQuest(string questName)
     {
+        // don't add the same quest twice if one already exist
+        foreach (QuestUI activeQuest in activeQuests)
+        {
+            if (activeQuest.detail.questName == questName) return;
+        }
+
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
+        detail.questName = questName;
         QuestUI quest;
         switch(detail.questType)
         {
@@ -69,6 +66,11 @@ public class QuestManager : MonoBehaviour
         activeQuests.Add(quest);
         DisplayQuests();
         ToggleQuestItemInteractable(detail);
+        var args = new QuestEventArgs
+        { 
+            questName = questName
+        };
+        EventTracker.GetTracker().QuestHasStarted(quest, args);
     }
 
     // make all the quest item associated with this quest toggeable
@@ -130,15 +132,11 @@ public class QuestManager : MonoBehaviour
         {
             activeQuests.Remove(finishedQuest);
             string nextQuest = finishedQuest.detail.nextQuestName;
-            if (nextQuest != "" && nextQuest != null)
+            if (!string.IsNullOrEmpty(nextQuest))
             {
                 AddQuest(finishedQuest.detail.nextQuestName);
             }
             DisplayQuests();
-
-            var args = new QuestEndedEventArgs();
-            args.questName = finishedQuest.detail.questName;
-            OnQuestEnded?.Invoke(this, args);
             return true;
         }
         return false;

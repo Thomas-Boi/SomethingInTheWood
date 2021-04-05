@@ -1,8 +1,20 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// The args for a quest start/end event.
+/// Contains the questName of the quest.
+/// </summary>
+public class QuestEventArgs : EventArgs
+{
+    /// <summary>
+    /// The name of a QuestDetail ScriptableObject.
+    /// </summary>
+    public string questName;
+}
 public abstract class QuestUI : MonoBehaviour
 {
     // refs to UI elements
