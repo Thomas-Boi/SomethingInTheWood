@@ -33,7 +33,16 @@ public class ProgressQuestUI : QuestUI
     {
         progressTxt.text = $"{++curAmount}/{detail.amount}";
         bool finished = curAmount == detail.amount;
-        if (finished) Destroy(gameObject);
+        if (finished)
+        {
+            Destroy(gameObject);
+            // triggers the end event handler
+            var args = new QuestEndedEventArgs()
+            {
+                questName = detail.questName
+            };
+            EventTracker.GetTracker().QuestHasEnded(this, args);
+        }
         return finished;
     }
 

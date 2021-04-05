@@ -1,5 +1,5 @@
 {
-  "questName": "",
+  "nextDialogue": "Hunt some pigs",
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
@@ -9,11 +9,5 @@
 			"speaker": "John",
 			"speech": "Great, give it here and I’ll set everything up."
 		}
-	],
-  "idleDialogue": [
-		{
-			"speaker": "John",
-			"speech": "Gimme a few minutes..."
-		}
-  ]
+	]
 }

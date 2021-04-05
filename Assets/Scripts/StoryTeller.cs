@@ -8,7 +8,7 @@ using UnityEngine;
 public class StoryTeller : MonoBehaviour
 {
     public Player player;
-    public Character John;
+    public NPC John;
     private QuestManager questManager;
 
     // Start is called before the first frame update
@@ -23,7 +23,6 @@ public class StoryTeller : MonoBehaviour
 
         John.DisplayTextBubble();
         John.SetDialogue("MeetJohnFirstTime");
-        John.SetQuestDialogueDict("JohnBeach");
     }
 
 }

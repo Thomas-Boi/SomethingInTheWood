@@ -9577,7 +9577,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 789630734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff8a470ea9399d4aa969798a0d86968, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bbe609c40f07cc49bc93a73977a4313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textBubblePrefab: {fileID: 8681478032158779033, guid: b51d5baab462539409281d3250524160, type: 3}
@@ -18754,7 +18754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7459116194059395685, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
       propertyPath: m_Name
-      value: TestNPC
+      value: John
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395685, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
       propertyPath: m_TagString
@@ -18762,11 +18762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395688, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.17
+      value: -21.5
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395688, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: -7.6
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395688, guid: d79392de2e3f02641a6995850f9f06d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19049,7 +19049,7 @@ PrefabInstance:
       objectReference: {fileID: 1128357267}
     - target: {fileID: 5915573291055368783, guid: 36246e87bb416554986b06c1b290f116, type: 3}
       propertyPath: m_Name
-      value: TestPlayer
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5915573291055368816, guid: 36246e87bb416554986b06c1b290f116, type: 3}
       propertyPath: m_LocalPosition.x

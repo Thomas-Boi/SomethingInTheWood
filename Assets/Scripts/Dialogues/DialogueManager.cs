@@ -7,27 +7,14 @@ public class DialogueManager : MonoBehaviour
     // track the UI
     public GameObject dialoguePrefab;
 
-    private QuestManager questManager;
-
-    private void Start()
-    {
-        questManager = gameObject.GetComponent<QuestManager>();
-    }
-
     public DialogueUI DisplayMainDialogue(DialogueData dialogueData)
     {
         var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
 
         // show the first dialogue and pass the quest name to be created when
         // dialogue ends.
-        dialogueElem.StartDialogue(dialogueData.mainDialogue);
+        dialogueElem.StartDialogue(dialogueData.mainDialogue, dialogueData);
         dialogueElem.NextDialogue();
-
-        // some dialogues don't have a quest to trigger after
-        if (dialogueData.questName != "")
-        {
-            RegisterQuestOnDiaglogueEnd(dialogueElem, dialogueData.questName);
-        }
         return dialogueElem;
     }
 
@@ -37,24 +24,9 @@ public class DialogueManager : MonoBehaviour
 
         // show the first dialogue and pass the quest name to be created when
         // dialogue ends.
-        dialogueElem.StartDialogue(dialogueData.idleDialogue);
+        dialogueElem.StartDialogue(dialogueData.idleDialogue, dialogueData);
         dialogueElem.NextDialogue();
         return dialogueElem;
-    }
-
-    /// <summary>
-    /// Register the add quest code when dialogue ends.
-    /// </summary>
-    /// <param name="dialogueElem"></param>
-    /// <param name="questName"></param>
-    private void RegisterQuestOnDiaglogueEnd(DialogueUI dialogueElem, string questName) 
-    {
-        DialogueEndedEventArgs args = new DialogueEndedEventArgs
-        {
-            questName = questName
-        };
-        dialogueElem.args = args;
-        dialogueElem.DialogueEnded += questManager.AddQuest;
     }
 
 }

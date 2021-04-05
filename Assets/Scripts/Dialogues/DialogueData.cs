@@ -16,12 +16,23 @@ public class DialogueData
     /// The name of a QuestDetail ScriptableObject that'll
     /// be called when this dialogue ends.
     /// </summary>
-    public string questName;
+    public string nextQuest;
 
     /// <summary>
     /// The extra dialogues for when the character is idling around.
     /// </summary>
     public DialogueStruct[] idleDialogue;
+
+    /// <summary>
+    /// Tracks the name of the next dialogue when this one is done.
+    /// </summary>
+    public string nextDialogue;
+
+    /// <summary>
+    /// Tracks the name of the quest that needs to be completed 
+    /// before we move on to the next dialogue.
+    /// </summary>
+    public string requiredQuestForNextDialogue;
 }
 
 // holds the data on a dialogue speaker and what they says

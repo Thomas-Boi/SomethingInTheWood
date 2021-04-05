@@ -11,6 +11,12 @@
         // if name matches in CheckQuestItem()
         // then that means we already spoke to the person we need
         Destroy(gameObject);
+        // triggers the end event handler
+        var args = new QuestEndedEventArgs()
+        {
+            questName = detail.questName
+        };
+        EventTracker.GetTracker().QuestHasEnded(this, args);
         return true;
     }
 

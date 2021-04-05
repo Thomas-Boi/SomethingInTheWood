@@ -20,15 +20,11 @@ public class QuestManager : MonoBehaviour
     // margin for the each quest ui on canvas
     const int Y_OFFSET = -30;
 
-    // holds a quest name that will be added to
-    // the quest manager when the dialogue ends.
-    public QuestEndedEventArgs args;
-
-    public event EventHandler<QuestEndedEventArgs> OnQuestEnded;
-
     public void Awake() 
     {
         activeQuests = new ArrayList();
+        // subscribe to DialogueEnded event
+        EventTracker.GetTracker().DialogueEnded += AddQuest;
     }
 
     /// <summary>
@@ -44,7 +40,8 @@ public class QuestManager : MonoBehaviour
     /// </param>
     public void AddQuest(object srcObject, DialogueEndedEventArgs args)
     {
-        AddQuest(args.questName);
+        if (string.IsNullOrEmpty(args.dialogueData.nextQuest)) return;
+        AddQuest(args.dialogueData.nextQuest);
     }
 
     /// <summary>
@@ -55,6 +52,12 @@ public class QuestManager : MonoBehaviour
     /// </param>
     public void AddQuest(string questName)
     {
+        // don't add the same quest twice if one already exist
+        foreach (QuestUI activeQuest in activeQuests)
+        {
+            if (activeQuest.detail.questName == questName) return;
+        }
+
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
         QuestUI quest;
         switch(detail.questType)
@@ -136,11 +139,6 @@ public class QuestManager : MonoBehaviour
                 AddQuest(finishedQuest.detail.nextQuestName);
             }
             DisplayQuests();
-
-            // triggers the end event handler
-            var args = new QuestEndedEventArgs();
-            args.questName = finishedQuest.detail.questName;
-            OnQuestEnded?.Invoke(this, args);
             return true;
         }
         return false;
