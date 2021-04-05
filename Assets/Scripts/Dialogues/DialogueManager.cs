@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueDisplayer : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     // track the UI
     public GameObject dialoguePrefab;
@@ -49,8 +49,10 @@ public class DialogueDisplayer : MonoBehaviour
     /// <param name="questName"></param>
     private void RegisterQuestOnDiaglogueEnd(DialogueUI dialogueElem, string questName) 
     {
-        DialogueEndedEventArgs args = new DialogueEndedEventArgs();
-        args.questName = questName;
+        DialogueEndedEventArgs args = new DialogueEndedEventArgs
+        {
+            questName = questName
+        };
         dialogueElem.args = args;
         dialogueElem.DialogueEnded += questManager.AddQuest;
     }

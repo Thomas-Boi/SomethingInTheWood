@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class Character : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Character : MonoBehaviour
     // vs the idle dialogue after the main one
     // is spoken
     private bool spokenMainDialogue;
-    private DialogueDisplayer dialogueDisplayer;
-    private CharacterQuestDialogueDict questDialogueDict;
+    private DialogueManager dialogueDisplayer;
+    private Dictionary<string, string> questDialogueDict;
 
     public GameObject textBubblePrefab;
     private GameObject textBubble;
@@ -19,13 +20,12 @@ public class Character : MonoBehaviour
 
     public void Awake()
     {
-        dialogueDisplayer = GameObject.Find("Canvas").GetComponent<DialogueDisplayer>();
+        dialogueDisplayer = GameObject.Find("Canvas").GetComponent<DialogueManager>();
         spokenMainDialogue = false;
-        QuestManager questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
-        questManager.OnQuestEnded += OnQuestEndHandler;
 
-        questDialogueDict = new CharacterQuestDialogueDict();
-        questDialogueDict.dict = new Dictionary<string, string>();
+        // register the event handler so we know when a quest ended
+        var questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        questManager.OnQuestEnded += OnQuestEndHandler;
     }
 
     /// <summary>
@@ -53,16 +53,20 @@ public class Character : MonoBehaviour
 
     public void SetQuestDialogueDict(string jsonResourceName)
     {
-        //TextAsset data = Resources.Load<TextAsset>(jsonResourceName);
-        //questDialogueDict = JsonUtility.FromJson<CharacterQuestDialogueDict>(data.ToString());
-        //Debug.Log(questDialogueDict.dict["a"]);
-        questDialogueDict.dict.Add("GatherFirewood", "FinishedGatherWood");
+        TextAsset data = Resources.Load<TextAsset>($"QuestDialogueDict/{jsonResourceName}");
+        questDialogueDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(data.ToString());
     }
 
+    /// <summary>
+    /// Handle the event when a quest ended. This checks
+    /// whether the Character needs to do anything (animation, change dialogue etc...)
+    /// </summary>
+    /// <param name="source">The source QuestManager</param>
+    /// <param name="args">The argument containing the quest name that ended</param>
     public void OnQuestEndHandler(object source, QuestEndedEventArgs args)
     {
         string dialogueName;
-        questDialogueDict.dict.TryGetValue(args.questName, out dialogueName);
+        questDialogueDict.TryGetValue(args.questName, out dialogueName);
         if (dialogueName != null)
         {
             SetDialogue(dialogueName);
@@ -82,11 +86,11 @@ public class Character : MonoBehaviour
             Destroy(textBubble);
         }
 
-        if (spokenMainDialogue)
+        if (!spokenMainDialogue)
         {
+            spokenMainDialogue = true;
             return dialogueDisplayer.DisplayIdleDialogue(curDialogue);
         }
-        spokenMainDialogue = true;
 
         return dialogueDisplayer.DisplayMainDialogue(curDialogue);
     }

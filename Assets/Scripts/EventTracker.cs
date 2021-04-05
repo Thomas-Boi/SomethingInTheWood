@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestDisplayer : MonoBehaviour
+/// <summary>
+/// Tracks the main events that happen in the game.
+/// Specifically quests, and dialogues.
+/// </summary>
+public class EventTracker : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

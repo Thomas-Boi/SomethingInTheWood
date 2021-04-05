@@ -33,7 +33,8 @@ public class QuestManager : MonoBehaviour
 
     /// <summary>
     /// Wrapper for the AddQuest(string) method. To be used as a
-    /// callback for when a dialogue ends.
+    /// callback for when a dialogue ends and we want to add a
+    /// new quest.
     /// </summary>
     /// <param name="srcObject">
     /// The object that called this callback.
@@ -130,12 +131,13 @@ public class QuestManager : MonoBehaviour
         {
             activeQuests.Remove(finishedQuest);
             string nextQuest = finishedQuest.detail.nextQuestName;
-            if (nextQuest != "" && nextQuest != null)
+            if (!string.IsNullOrEmpty(nextQuest))
             {
                 AddQuest(finishedQuest.detail.nextQuestName);
             }
             DisplayQuests();
 
+            // triggers the end event handler
             var args = new QuestEndedEventArgs();
             args.questName = finishedQuest.detail.questName;
             OnQuestEnded?.Invoke(this, args);

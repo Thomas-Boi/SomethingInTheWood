@@ -23,7 +23,7 @@ public class StoryTeller : MonoBehaviour
 
         John.DisplayTextBubble();
         John.SetDialogue("MeetJohnFirstTime");
-        John.SetQuestDialogueDict("JohnQuestDialogueMap");
+        John.SetQuestDialogueDict("JohnBeach");
     }
 
 }
