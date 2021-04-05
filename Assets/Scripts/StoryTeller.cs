@@ -18,11 +18,36 @@ public class StoryTeller : MonoBehaviour
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
         questManager.AddQuest("MeetJohnFirstTime");
 
+
         player.SetDialogue("Intro");
         player.TalkOutloud();
 
         John.DisplayTextBubble();
         John.SetDialogue("MeetJohnFirstTime");
+
+        EventTracker.GetTracker().QuestStartedHandler += SpawnBoars;
+        EventTracker.GetTracker().DialogueEndedHandler += MakeCamp;
     }
 
+    void SpawnBoars(object src, QuestEventArgs args)
+    {
+        if (args.questName == "HuntBoars")
+        {
+            foreach (Transform child in GameObject.Find("Boars").transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void MakeCamp(object src, DialogueEventArgs args)
+    {
+        if (args.dialogueData.dialogueName == "FinishedGatherWood")
+        {
+            foreach (Transform child in GameObject.Find("Fire").transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
 }

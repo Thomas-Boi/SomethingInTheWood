@@ -25,16 +25,37 @@ public class EventTracker
         return instance;
     }
 
-    public event EventHandler<DialogueEndedEventArgs> DialogueEnded;
-    public event EventHandler<QuestEndedEventArgs> QuestEnded;
+    public event EventHandler<DialogueEventArgs> DialogueEndedHandler;
+    public event EventHandler<QuestEventArgs> QuestStartedHandler;
+    public event EventHandler<QuestEventArgs> QuestEndedHandler;
 
-    public void QuestHasEnded(object src, QuestEndedEventArgs args)
+    /// <summary>
+    /// Signal that a quest has started.
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="args"></param>
+    public void QuestHasStarted(object src, QuestEventArgs args)
     {
-        QuestEnded?.Invoke(src, args);
+        QuestStartedHandler?.Invoke(src, args);
     }
 
-    public void DialogueHasEnded(object src, DialogueEndedEventArgs args)
+    /// <summary>
+    /// Signal that a quest has ended.
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="args"></param>
+    public void QuestHasEnded(object src, QuestEventArgs args)
     {
-        DialogueEnded?.Invoke(src, args);
+        QuestEndedHandler?.Invoke(src, args);
+    }
+
+    /// <summary>
+    /// Signal that a dialogue has ended.
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="args"></param>
+    public void DialogueHasEnded(object src, DialogueEventArgs args)
+    {
+        DialogueEndedHandler?.Invoke(src, args);
     }
 }

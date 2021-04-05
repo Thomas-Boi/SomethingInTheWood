@@ -13,7 +13,7 @@ public class NPC : Character
     void Start()
     {
         // register the event handler so we know when a quest ended
-        EventTracker.GetTracker().QuestEnded += OnQuestEndHandler;
+        EventTracker.GetTracker().QuestEndedHandler += OnQuestEndHandler;
         spokenMainDialogue = false;
     }
 
@@ -32,7 +32,7 @@ public class NPC : Character
     /// </summary>
     /// <param name="source">The source QuestManager</param>
     /// <param name="args">The argument containing the quest name that ended</param>
-    private void OnQuestEndHandler(object source, QuestEndedEventArgs args)
+    private void OnQuestEndHandler(object source, QuestEventArgs args)
     {
         if (args.questName == curDialogue.requiredQuestForNextDialogue)
         {

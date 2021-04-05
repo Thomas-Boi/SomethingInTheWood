@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueEndedEventArgs : EventArgs
+/// <summary>
+/// The args for a dialogue end event.
+/// Contains the dialogueData of the dialogue.
+/// </summary>
+public class DialogueEventArgs : EventArgs
 {
     /// <summary>
     /// The name of a QuestDetail ScriptableObject.
@@ -25,7 +29,7 @@ public class DialogueUI : MonoBehaviour
     private int curScriptIndex;
 
     // holds the DialogueData where this dialogue came from
-    public DialogueEndedEventArgs args;
+    public DialogueEventArgs args;
 
     /// <summary>
     /// start a new series of dialogues.
@@ -39,7 +43,7 @@ public class DialogueUI : MonoBehaviour
     {
         this.dialogues = dialogues;
         curScriptIndex = 0;
-        args = new DialogueEndedEventArgs
+        args = new DialogueEventArgs
         {
             dialogueData = data
         };

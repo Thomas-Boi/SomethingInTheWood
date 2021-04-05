@@ -37,7 +37,7 @@ public class ProgressQuestUI : QuestUI
         {
             Destroy(gameObject);
             // triggers the end event handler
-            var args = new QuestEndedEventArgs()
+            var args = new QuestEventArgs()
             {
                 questName = detail.questName
             };

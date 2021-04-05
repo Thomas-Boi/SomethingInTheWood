@@ -12,7 +12,7 @@
         // then that means we already spoke to the person we need
         Destroy(gameObject);
         // triggers the end event handler
-        var args = new QuestEndedEventArgs()
+        var args = new QuestEventArgs()
         {
             questName = detail.questName
         };

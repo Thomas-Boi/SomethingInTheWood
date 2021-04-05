@@ -7,6 +7,13 @@
 public class DialogueData
 {
     /// <summary>
+    /// Name of the dialogue json file. This should not
+    /// be set in the JSON but rather set manually when
+    /// it's loaded from JSON to object.
+    /// </summary>
+    public string dialogueName;
+
+    /// <summary>
     /// Holds a set of dialogues that's relevant to the
     /// main story.
     /// </summary>

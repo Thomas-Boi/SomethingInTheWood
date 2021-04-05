@@ -1,14 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-public class QuestEndedEventArgs : EventArgs
-{
-    /// <summary>
-    /// The name of a QuestDetail ScriptableObject.
-    /// </summary>
-    public string questName;
-}
 
 public class QuestManager : MonoBehaviour
 {
@@ -24,7 +16,7 @@ public class QuestManager : MonoBehaviour
     {
         activeQuests = new ArrayList();
         // subscribe to DialogueEnded event
-        EventTracker.GetTracker().DialogueEnded += AddQuest;
+        EventTracker.GetTracker().DialogueEndedHandler += AddQuest;
     }
 
     /// <summary>
@@ -38,7 +30,7 @@ public class QuestManager : MonoBehaviour
     ///  <param name="args">
     /// The event handler object containing the questName.
     /// </param>
-    public void AddQuest(object srcObject, DialogueEndedEventArgs args)
+    public void AddQuest(object srcObject, DialogueEventArgs args)
     {
         if (string.IsNullOrEmpty(args.dialogueData.nextQuest)) return;
         AddQuest(args.dialogueData.nextQuest);
@@ -59,6 +51,7 @@ public class QuestManager : MonoBehaviour
         }
 
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
+        detail.questName = questName;
         QuestUI quest;
         switch(detail.questType)
         {
@@ -73,6 +66,11 @@ public class QuestManager : MonoBehaviour
         activeQuests.Add(quest);
         DisplayQuests();
         ToggleQuestItemInteractable(detail);
+        var args = new QuestEventArgs
+        { 
+            questName = questName
+        };
+        EventTracker.GetTracker().QuestHasStarted(quest, args);
     }
 
     // make all the quest item associated with this quest toggeable

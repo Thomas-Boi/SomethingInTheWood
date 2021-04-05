@@ -38,6 +38,9 @@ public class Character : MonoBehaviour
     {
         TextAsset data = Resources.Load<TextAsset>($"Dialogues/{dialogueResourceName}");
         curDialogue = JsonUtility.FromJson<DialogueData>(data.ToString());
+
+        // set the dialogueName manually so we can reuse it if neede
+        curDialogue.dialogueName = dialogueResourceName;
     }
 
 
