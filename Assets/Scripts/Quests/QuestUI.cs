@@ -22,10 +22,15 @@ public abstract class QuestUI : MonoBehaviour
 
     public QuestDetail detail;
 
-    public void StartQuest(QuestDetail _detail)
+    public virtual void StartQuest(QuestDetail _detail)
     {
         detail = _detail;
         descriptionTxt.text = detail.description;
+        var args = new QuestEventArgs
+        {
+            questName = _detail.questName
+        };
+        EventTracker.GetTracker().QuestHasStarted(this, args);
     }
 
     /// <summary>
@@ -46,5 +51,21 @@ public abstract class QuestUI : MonoBehaviour
     public bool CheckObject(string name)
     {
         return name == detail.itemName;
+    }
+
+    /// <summary>
+    /// End the quest. Removes it from the UI
+    /// and triggers the QuestHasEndedEvent
+    /// </summary>
+    /// <returns></returns>
+    protected void EndQuest()
+    {
+        Destroy(gameObject);
+        // triggers the end event handler
+        var args = new QuestEventArgs()
+        {
+            questName = detail.questName
+        };
+        EventTracker.GetTracker().QuestHasEnded(this, args);
     }
 }

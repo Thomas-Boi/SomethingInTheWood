@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6262014130163927050}
   - component: {fileID: 165043065}
   - component: {fileID: 3514429024085220942}
-  - component: {fileID: 842032608897094456}
   - component: {fileID: 5919935058047264296}
   - component: {fileID: 1995990448}
+  - component: {fileID: 6682720884803961656}
   m_Layer: 10
   m_Name: boar
   m_TagString: Enemy
@@ -128,24 +128,6 @@ NavMeshAgent:
   m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &842032608897094456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2395970159137225910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 520e88a6068346243bd1751a0c970a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  aggro: 0
-  knockbackTime: 0
-  health: 20
-  sprite: {fileID: 6262014130163927050}
-  invincibleTime: 0
 --- !u!61 &5919935058047264296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,3 +175,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6682720884803961656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395970159137225910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbc5251738008a40929faa1942edd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  aggro: 0
+  knockbackTime: 0
+  health: 0
+  invincibleTime: 0

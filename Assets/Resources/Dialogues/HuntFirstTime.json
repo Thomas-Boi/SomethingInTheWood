@@ -1,5 +1,7 @@
 {
-  "questName": "huntBoars",
+  "nextQuest": "HuntBoars",
+  "nextDialogue": "FinishedHuntFirstTime",
+  "requiredQuestForNextDialogue": "HuntBoars",
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
@@ -43,13 +45,13 @@
 		},
 		{
 			"speaker": "John",
-			"speech": "Try to take out at least 2 of them, let’s see what you got."
+			"speech": "Try to take out three of them, let’s see what you got."
 		}
 	],
   "idleDialogue": [
 	{
 		"speaker": "John",
-		"speech": "Aren't you hungry? We can't eat till you get me two boars. Get back to the hunt."
+		"speech": "Aren't you hungry? We can't eat till you get me three boars. Get back to the hunt."
 	}
 ]
 }

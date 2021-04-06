@@ -10,7 +10,9 @@ using UnityEngine;
 /// </summary>
 public class EventTracker
 {
+    // singleton
     private static EventTracker instance;
+
     private EventTracker()
     {
 
@@ -25,9 +27,11 @@ public class EventTracker
         return instance;
     }
 
+    // event handlers
     public event EventHandler<DialogueEventArgs> DialogueEndedHandler;
     public event EventHandler<QuestEventArgs> QuestStartedHandler;
     public event EventHandler<QuestEventArgs> QuestEndedHandler;
+    public event EventHandler<EnemyKilledEventArgs> EnemyKilledHandler;
 
     /// <summary>
     /// Signal that a quest has started.
@@ -57,5 +61,14 @@ public class EventTracker
     public void DialogueHasEnded(object src, DialogueEventArgs args)
     {
         DialogueEndedHandler?.Invoke(src, args);
+    }
+
+    /// <summary>
+    /// Signal that an enemy has been killed.
+    /// </summary>
+    /// <param name="args"></param>
+    public void EnemyWasKilled(object src, EnemyKilledEventArgs args)
+    {
+        EnemyKilledHandler?.Invoke(src, args);
     }
 }

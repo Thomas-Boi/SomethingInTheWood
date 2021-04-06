@@ -15,6 +15,6 @@ MonoBehaviour:
   questName: GatherFirewood
   description: Gather Firewoods
   itemName: WoodLog
-  amount: 8
+  amount: 1
   questType: 1
   nextQuestName: TalkToJohn
