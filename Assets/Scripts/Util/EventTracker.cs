@@ -71,4 +71,15 @@ public class EventTracker
     {
         EnemyKilledHandler?.Invoke(src, args);
     }
+
+    /// <summary>
+    /// Clear all the event handlers.
+    /// </summary>
+    public void ClearEventHandlers()
+    {
+        DialogueEndedHandler = null;
+        QuestStartedHandler = null;
+        QuestEndedHandler = null;
+        EnemyKilledHandler = null;
+}
 }

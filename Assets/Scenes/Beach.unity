@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395970159137225910, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5266700109648140582, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9668,7 +9668,7 @@ GameObject:
   - component: {fileID: 846460260}
   - component: {fileID: 846460259}
   m_Layer: 0
-  m_Name: StoryTeller
+  m_Name: Director
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14562,7 +14562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395970159137225910, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5266700109648140582, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38153,7 +38153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395970159137225910, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5266700109648140582, guid: afef8986239c2bd4aa464ec4ef415844, type: 3}
       propertyPath: m_LocalPosition.x
