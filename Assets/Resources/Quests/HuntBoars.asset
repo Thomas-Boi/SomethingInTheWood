@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd419b103debcba4ba3162fb4e587f12, type: 3}
   m_Name: HuntBoars
   m_EditorClassIdentifier: 
-  questName: 
+  questName: HuntBoars
   description: Hunt wild boars
-  itemName: boar
+  itemName: Boar
   amount: 3
   questType: 2
-  nextQuestName: 
+  nextQuestName: TalkToJohn

@@ -1,8 +1,19 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// The args for a enemy killed event.
+/// Contains the enemy name.
+/// </summary>
+public class EnemyKilledEventArgs : EventArgs
+{
+    /// <summary>
+    /// The name of the killed enemy.
+    /// </summary>
+    public string enemyName;
+}
 
 public class Enemy : MonoBehaviour
 {
@@ -14,13 +25,11 @@ public class Enemy : MonoBehaviour
     public bool aggro;
     public float knockbackTime;
     public int health;
-    
-    public SpriteRenderer sprite;
 
     public float invincibleTime;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
@@ -37,14 +46,11 @@ public class Enemy : MonoBehaviour
         if (invincibleTime > 0)
         {
             invincibleTime -= Time.deltaTime;
-
-            sprite.color = new Color(1, 0, 0, 1);
-
-
+            rend.color = new Color(1, 0, 0, 1);
         }
         else
         {
-            sprite.color = new Color(1, 1, 1, 1);
+            rend.color = new Color(1, 1, 1, 1);
         }
 
         agent.SetDestination(target.position);
@@ -128,14 +134,19 @@ public class Enemy : MonoBehaviour
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
             aggro = true;
-            Object.Destroy(col.gameObject);
+            Destroy(col.gameObject);
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
             knockbackTime = 0.1f;
             invincibleTime = 0.1f;
             health--;
             if (health <= 0) {
-                Object.Destroy(gameObject);
+                Destroy(gameObject);
+                var args = new EnemyKilledEventArgs
+                { 
+                    enemyName = this.GetType().Name
+                };
+                EventTracker.GetTracker().EnemyWasKilled(this, args);
             }
         }
     }

@@ -73,6 +73,7 @@ public class Interaction
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // sometimes player talks to themselves
             if (curDialogue != null)
             {
                 ContinueTalking();
@@ -90,11 +91,6 @@ public class Interaction
             {
                 string itemName = interactObject.GetComponent<Item>().Interact();
                 questManager.CheckQuestItem(itemName);
-                //if ()
-                //{
-                //    // recheck the interactables in case one got destroyed
-                //    interactables = GameObject.FindGameObjectsWithTag("Interactable");
-                //}
             }
 
         }

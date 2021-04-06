@@ -14,6 +14,7 @@ public class NPC : Character
     {
         // register the event handler so we know when a quest ended
         EventTracker.GetTracker().QuestEndedHandler += OnQuestEndHandler;
+        EventTracker.GetTracker().DialogueEndedHandler += OnDialogueEndHandler;
         spokenMainDialogue = false;
     }
 
@@ -27,14 +28,30 @@ public class NPC : Character
     }
 
     /// <summary>
-    /// Handle the event when a quest ended. This checks
-    /// whether the Character needs to do anything (animation, change dialogue etc...)
+    /// Handle the event when a quest ended.This checks whether
+    /// we can proceed to the next dialogue when a quest has ended.
     /// </summary>
     /// <param name="source">The source QuestManager</param>
     /// <param name="args">The argument containing the quest name that ended</param>
     private void OnQuestEndHandler(object source, QuestEventArgs args)
     {
         if (args.questName == curDialogue.requiredQuestForNextDialogue)
+        {
+            SetDialogue(curDialogue.nextDialogue);
+        }
+    }
+
+    /// <summary>
+    /// Checks whether we need to set a dialogue ourselves next.
+    /// </summary>
+    /// <param name="source">The source QuestManager</param>
+    /// <param name="args">The argument containing the quest name that ended</param>
+    private void OnDialogueEndHandler(object source, DialogueEventArgs args)
+    {
+        if (args.dialogueData.dialogueName != curDialogue.dialogueName) return;
+
+        if (!string.IsNullOrEmpty(curDialogue.nextDialogue) 
+            && string.IsNullOrEmpty(curDialogue.requiredQuestForNextDialogue))
         {
             SetDialogue(curDialogue.nextDialogue);
         }

@@ -9,22 +9,22 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueUI DisplayMainDialogue(DialogueData dialogueData)
     {
-        var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
-
-        // show the first dialogue and pass the quest name to be created when
-        // dialogue ends.
-        dialogueElem.StartDialogue(dialogueData.mainDialogue, dialogueData);
-        dialogueElem.NextDialogue();
-        return dialogueElem;
+        bool displayMain = true;
+        return DisplayDialogue(dialogueData, displayMain);
     }
 
     public DialogueUI DisplayIdleDialogue(DialogueData dialogueData)
     {
+        bool displayMain = false;
+        return DisplayDialogue(dialogueData, displayMain);
+    }
+
+    private DialogueUI DisplayDialogue(DialogueData dialogueData, bool displayMain)
+    {
         var dialogueElem = Instantiate(dialoguePrefab, transform).GetComponent<DialogueUI>();
 
-        // show the first dialogue and pass the quest name to be created when
-        // dialogue ends.
-        dialogueElem.StartDialogue(dialogueData.idleDialogue, dialogueData);
+        // show the first dialogue
+        dialogueElem.StartDialogue(dialogueData, displayMain);
         dialogueElem.NextDialogue();
         return dialogueElem;
     }

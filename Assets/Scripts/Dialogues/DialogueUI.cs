@@ -14,6 +14,11 @@ public class DialogueEventArgs : EventArgs
     /// The name of a QuestDetail ScriptableObject.
     /// </summary>
     public DialogueData dialogueData;
+
+    /// <summary>
+    /// Whether the dialogue was the main dialogue or idle dialogue.
+    /// </summary>
+    public bool displayedMain;
 }
 
 // holds the Text elements to display a dialogue piece from characters
@@ -36,16 +41,20 @@ public class DialogueUI : MonoBehaviour
     /// need to call this first after instantiaing a Dialogue Prefab
     /// the combatHUDTransform is the UI canvas element's transform
     /// </summary>
-    /// <param name="dialogues">
-    /// The dialogues that will be displayed.
+    /// <param name="data">
+    /// The dialogue data that we are extracting the dialogues from.
     /// </param>
-    public void StartDialogue(DialogueStruct[] dialogues, DialogueData data)
+    /// <param name="displayMain">
+    /// Whether we are display the main dialogue or the idle dialogue.
+    /// </param>
+    public void StartDialogue(DialogueData data, bool displayMain)
     {
-        this.dialogues = dialogues;
+        dialogues = displayMain ? data.mainDialogue : data.idleDialogue;
         curScriptIndex = 0;
         args = new DialogueEventArgs
         {
-            dialogueData = data
+            dialogueData = data,
+            displayedMain = displayMain
         };
     }
 

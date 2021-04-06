@@ -16,7 +16,7 @@ public class ProgressQuestUI : QuestUI
 
     // start a new quest
     // need to call this first after instantiaing a Quest Prefab
-    public new void StartQuest(QuestDetail _detail)
+    public override void StartQuest(QuestDetail _detail)
     {
         base.StartQuest(_detail);
         curAmount = 0;
@@ -35,13 +35,7 @@ public class ProgressQuestUI : QuestUI
         bool finished = curAmount == detail.amount;
         if (finished)
         {
-            Destroy(gameObject);
-            // triggers the end event handler
-            var args = new QuestEventArgs()
-            {
-                questName = detail.questName
-            };
-            EventTracker.GetTracker().QuestHasEnded(this, args);
+            EndQuest();
         }
         return finished;
     }

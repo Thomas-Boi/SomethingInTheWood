@@ -15,8 +15,11 @@ public class QuestManager : MonoBehaviour
     public void Awake() 
     {
         activeQuests = new ArrayList();
-        // subscribe to DialogueEnded event
-        EventTracker.GetTracker().DialogueEndedHandler += AddQuest;
+
+        // subscribe to events
+        var tracker = EventTracker.GetTracker();
+        tracker.DialogueEndedHandler += AddQuest;
+        tracker.EnemyKilledHandler += CheckQuestItem;
     }
 
     /// <summary>
@@ -33,7 +36,12 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(object srcObject, DialogueEventArgs args)
     {
         if (string.IsNullOrEmpty(args.dialogueData.nextQuest)) return;
-        AddQuest(args.dialogueData.nextQuest);
+
+        // only add quests when the main dialogue was triggered
+        if (args.displayedMain)
+        {
+            AddQuest(args.dialogueData.nextQuest);
+        }
     }
 
     /// <summary>
@@ -45,10 +53,10 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(string questName)
     {
         // don't add the same quest twice if one already exist
-        foreach (QuestUI activeQuest in activeQuests)
-        {
-            if (activeQuest.detail.questName == questName) return;
-        }
+        //foreach (QuestUI activeQuest in activeQuests)
+        //{
+        //    if (activeQuest.detail.questName == questName) return;
+        //}
 
         QuestDetail detail = Resources.Load<QuestDetail>("Quests/" + questName);
         detail.questName = questName;
@@ -66,11 +74,6 @@ public class QuestManager : MonoBehaviour
         activeQuests.Add(quest);
         DisplayQuests();
         ToggleQuestItemInteractable(detail);
-        var args = new QuestEventArgs
-        { 
-            questName = questName
-        };
-        EventTracker.GetTracker().QuestHasStarted(quest, args);
     }
 
     // make all the quest item associated with this quest toggeable
@@ -102,17 +105,24 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Wrapper for the CheckQuestItem(string) method. This is
+    /// used as an event handler for the EnemyKilled event.
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="args"></param>
+    private void CheckQuestItem(object src, EnemyKilledEventArgs args)
+    {
+        CheckQuestItem(args.enemyName);
+    }
+
+    /// <summary>
     /// Check whether the itemName belongs to any
     /// of the quest. If it is, update the quest progress.
     /// </summary>
     /// <param name="itemName">
     /// Name of an Item Prefab.
     /// </param>
-    /// <returns>
-    /// Whether the quest item is removed from the 
-    /// scene.
-    /// </returns>
-    public bool CheckQuestItem(string itemName)
+    public void CheckQuestItem(string itemName)
     {
         QuestUI finishedQuest = null;
         foreach (QuestUI quest in activeQuests)
@@ -137,9 +147,7 @@ public class QuestManager : MonoBehaviour
                 AddQuest(finishedQuest.detail.nextQuestName);
             }
             DisplayQuests();
-            return true;
         }
-        return false;
     }
 
 }

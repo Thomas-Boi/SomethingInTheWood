@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This tells the story of the prototype.
+/// This directs how things happen in the Beach Scene.
 /// </summary>
-public class StoryTeller : MonoBehaviour
+public class BeachDirector : MonoBehaviour
 {
     public Player player;
     public NPC John;
@@ -27,6 +27,7 @@ public class StoryTeller : MonoBehaviour
 
         EventTracker.GetTracker().QuestStartedHandler += SpawnBoars;
         EventTracker.GetTracker().DialogueEndedHandler += MakeCamp;
+        EventTracker.GetTracker().DialogueEndedHandler += LoadJungle;
     }
 
     void SpawnBoars(object src, QuestEventArgs args)
@@ -48,6 +49,14 @@ public class StoryTeller : MonoBehaviour
             {
                 child.gameObject.SetActive(true);
             }
+        }
+    }
+
+    void LoadJungle(object src, DialogueEventArgs args)
+    {
+        if (args.dialogueData.dialogueName == "FinishedHuntFirstTime")
+        {
+            SceneLoader.LoadJungleScene();
         }
     }
 }
