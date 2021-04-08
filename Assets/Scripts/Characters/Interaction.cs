@@ -43,10 +43,6 @@ public class Interaction
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    /// <param name="isTalking">
-    /// Whether the player is talking (either to themselves
-    /// or others).
-    /// </param>
     public void Update()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
@@ -77,6 +73,7 @@ public class Interaction
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // sometimes player talks to themselves
             if (curDialogue != null)
             {
                 ContinueTalking();
@@ -85,19 +82,15 @@ public class Interaction
 
             if (!interactObject) return;
 
-            if (interactObject.GetComponent<Character>()) // is a character
+            if (interactObject.GetComponent<NPC>()) // is an NPC
             {
-                StartTalking(interactObject.GetComponent<Character>());
+                StartTalking(interactObject.GetComponent<NPC>());
             }
 
             if (interactObject.GetComponent<Item>()) // is an item
             {
                 string itemName = interactObject.GetComponent<Item>().Interact();
-                if (questManager.CheckQuestItem(itemName))
-                {
-                    // recheck the interactables in case one got destroyed
-                    interactables = GameObject.FindGameObjectsWithTag("Interactable");
-                }
+                questManager.CheckQuestItem(itemName);
             }
 
         }

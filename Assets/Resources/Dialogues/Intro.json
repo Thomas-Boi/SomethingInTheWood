@@ -1,5 +1,4 @@
 {
-  "questName": "",
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
@@ -9,6 +8,5 @@
 			"speaker": "Jack",
 			"speech": "I have to... find the others."
 		}
-	],
-  "idleDialogue": []
+	]
 }
