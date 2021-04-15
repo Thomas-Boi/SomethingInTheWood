@@ -7,8 +7,13 @@ using UnityEngine;
 /// </summary>
 public class BeachDirector : MonoBehaviour
 {
+    // UI
+    public Texture2D mouseCursor;
+
+    // scene objects
     public Player player;
     public NPC John;
+
     private QuestManager questManager;
 
     // Start is called before the first frame update
@@ -28,6 +33,8 @@ public class BeachDirector : MonoBehaviour
         EventTracker.GetTracker().QuestStartedHandler += SpawnBoars;
         EventTracker.GetTracker().DialogueEndedHandler += MakeCamp;
         EventTracker.GetTracker().DialogueEndedHandler += LoadJungle;
+
+        Cursor.SetCursor(mouseCursor, Vector2.zero, CursorMode.Auto);
     }
 
     void SpawnBoars(object src, QuestEventArgs args)
@@ -45,7 +52,7 @@ public class BeachDirector : MonoBehaviour
     {
         if (args.dialogueData.dialogueName == "FinishedGatherWood")
         {
-            foreach (Transform child in GameObject.Find("Fire").transform)
+            foreach (Transform child in GameObject.Find("Camp").transform)
             {
                 child.gameObject.SetActive(true);
             }
@@ -54,7 +61,7 @@ public class BeachDirector : MonoBehaviour
 
     void LoadJungle(object src, DialogueEventArgs args)
     {
-        if (args.dialogueData.dialogueName == "FinishedHuntFirstTime")
+        if (args.dialogueData.dialogueName == "CampFireTalk")
         {
             SceneLoader.LoadJungleScene();
         }
