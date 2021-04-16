@@ -110,15 +110,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Player" && col.gameObject.GetComponent<ProtoMovement>().invincibleTime <= 0)
+        if (col.gameObject.tag == "Player" && col.gameObject.GetComponent<Movement>().invincibleTime <= 0)
         {
             Vector2 direction = (transform.position - col.gameObject.transform.position).normalized;
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
             knockbackTime = .5f;
 
-            col.gameObject.GetComponent<ProtoMovement>().knockbackTime = .2f;
-            col.gameObject.GetComponent<ProtoMovement>().invincibleTime = 1f;
+            col.gameObject.GetComponent<Movement>().knockbackTime = .2f;
+            col.gameObject.GetComponent<Movement>().invincibleTime = 1f;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1000, ForceMode2D.Impulse);
 
             col.gameObject.GetComponent<Player>().currentHealth--;

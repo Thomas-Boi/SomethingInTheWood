@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtoMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     // Using serialize field so we can adjust speed in editor
     [SerializeField]
