@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &4886437748546139600
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902336382313498793}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5bad187ca84ef0428342647b19ff43c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5915573291055368783
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7f356944d1371459e2177b09680407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueName: 
-  textBubble: {fileID: 0}
+  textBubblePrefab: {fileID: 0}
+  charName: 
   playerHealthBar: {fileID: 9137668437537012884, guid: 2b3dd27c50ceb2044b121eb670d6cfbf, type: 3}
   maxHealth: 20
   currentHealth: 20
@@ -315,6 +334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5915573291055368816}
     m_Modifications:
+    - target: {fileID: 5297258110244117863, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 459027332529652005, guid: e3a090a47bb78334a8e91704f93bab38, type: 3}
     - target: {fileID: 7459116194059395685, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
       propertyPath: m_Name
       value: TestSprite
@@ -325,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395688, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 7459116194059395688, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
       propertyPath: m_LocalPosition.z
@@ -378,6 +401,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4098034108175568707, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
+--- !u!1 &902336382313498793 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7459116194059395685, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
+  m_PrefabInstance: {fileID: 7710624907284130508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &902336382313498788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7459116194059395688, guid: 34f604a339abc2e4daf8b41ac8075421, type: 3}
