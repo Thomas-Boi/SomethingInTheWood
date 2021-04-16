@@ -76,6 +76,7 @@ public class Interaction
             // sometimes player talks to themselves
             if (curDialogue != null)
             {
+                SoundManager.PlayOneClip(AudioClips.singleton.dialogTick, 1.0f);
                 ContinueTalking();
                 return;
             }
@@ -84,11 +85,13 @@ public class Interaction
 
             if (interactObject.GetComponent<NPC>()) // is an NPC
             {
+                SoundManager.PlayOneClip(AudioClips.singleton.dialogTick, 1.0f);
                 StartTalking(interactObject.GetComponent<NPC>());
             }
 
             if (interactObject.GetComponent<Item>()) // is an item
             {
+                SoundManager.PlayOneClip(AudioClips.singleton.itemPickup, 1.0f);
                 string itemName = interactObject.GetComponent<Item>().Interact();
                 questManager.CheckQuestItem(itemName);
             }

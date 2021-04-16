@@ -19262,6 +19262,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1309763305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309763307}
+  - component: {fileID: 1309763306}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1309763306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309763305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1121b4e2d0cb0c1489ff22fdbab65c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShot: {fileID: 8300000, guid: 4ffa449fb1bce4341bc7ddeb281c9cc9, type: 3}
+  shotImpact: {fileID: 8300000, guid: 28d2391640aea5141a68cb06a7ccaf40, type: 3}
+  gunReload: {fileID: 8300000, guid: 4e2f7fda4cf6fcc40ae78767450282b4, type: 3}
+  gunEmpty: {fileID: 8300000, guid: 53c7c4905b99b164f9c17ae31758ce8e, type: 3}
+  UITick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
+  dialogTick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
+  playerHurt: {fileID: 8300000, guid: b8f7678597f1b224ba59de47076ed11d, type: 3}
+  itemPickup: {fileID: 8300000, guid: 43e65a2588b4b1e4b854541c2c585653, type: 3}
+--- !u!4 &1309763307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309763305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 48.259422, y: 16.64055, z: -90.73692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1397247112 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2230728819114915320, guid: 36246e87bb416554986b06c1b290f116, type: 3}

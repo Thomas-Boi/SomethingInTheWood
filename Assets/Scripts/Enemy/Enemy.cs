@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
             knockbackTime = .5f;
-
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.playerHurt, col.gameObject.GetComponent<Player>().transform.position, 1.0f);
             col.gameObject.GetComponent<Movement>().knockbackTime = .2f;
             col.gameObject.GetComponent<Movement>().invincibleTime = 1f;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1000, ForceMode2D.Impulse);
@@ -133,6 +133,7 @@ public class Enemy : MonoBehaviour
     void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.shotImpact, col.gameObject.transform.position, 1.0f);
             aggro = true;
             Destroy(col.gameObject);
             agent.velocity = new Vector2(0, 0);
