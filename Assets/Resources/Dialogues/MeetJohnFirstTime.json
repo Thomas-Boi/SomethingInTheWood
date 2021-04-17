@@ -1,5 +1,7 @@
 {
-  "questName": "GatherFirewood",
+  "nextQuest": "GatherFirewood",
+  "nextDialogue": "FinishedGatherWood",
+  "requiredQuestForNextDialogue": "GatherFirewood",
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
@@ -10,11 +12,11 @@
 			"speech": "Where is everybody else? Are they OK? Are you OK? God, what are we going to do..."
 		},
 		{
-			"speaker": "John",
+			"speaker": "???",
 			"speech": "...Calm down, kid."
 		},
 		{
-			"speaker": "John",
+			"speaker": "???",
 			"speech": "I’ll tell you what I can but first, what’s your name?"
 		},
 		{
@@ -39,7 +41,7 @@
 		},
 		{
 			"speaker": "John",
-			"speech": "Well be prepared to carry a heck of a lot more, we’re gonna set up shelter for the night somewhere past the tree line. I’m gonna need you to gather wood for me..."
+			"speech": "Well be prepared to carry a heck of a lot more, we’re gonna set up shelter for the night. I’m gonna need you to gather wood for me..."
 		},
 		{
 			"speaker": "Jack",
@@ -67,7 +69,7 @@
 		},
 		{
 			"speaker": "John",
-			"speech": "Like I said kid, I don’t know. They wouldn’t have abandoned me for just no reason though…Probably saw some bears."
+			"speech": "Like I said, I don’t know. They wouldn’t have abandoned me for just no reason though…"
 		},
 		{
 			"speaker": "Jack",
@@ -75,11 +77,11 @@
 		},
 		{
 			"speaker": "John",
-			"speech": "No idea kid... Don’t know where we are or how the ship went down when it did. Just be sure to listen to me and we’ll work out fine, only a matter of time before someone finds us."
+			"speech": "No idea... Don’t know where we are or how the ship went down when it did. Just be sure to listen to me and we’ll work out fine, only a matter of time before someone finds us"
 		},
 		{
 			"speaker": "Jack",
-			"speech": "Alright John… So gather wood?"
+			"speech": "Alright John… So we need wood right?"
 		},
 		{
 			"speaker": "John",

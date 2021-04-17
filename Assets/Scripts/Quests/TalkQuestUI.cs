@@ -10,7 +10,7 @@
     {
         // if name matches in CheckQuestItem()
         // then that means we already spoke to the person we need
-        Destroy(gameObject);
+        EndQuest();
         return true;
     }
 

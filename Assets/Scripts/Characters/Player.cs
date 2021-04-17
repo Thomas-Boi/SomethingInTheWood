@@ -6,17 +6,20 @@ public class Player : Character
 {
     // helper scripts
     private Interaction interactionScript;
-    private ProtoMovement movementScript;
+    private Movement movementScript;
 
     // Player stats
     public HealthBar playerHealthBar;
     public int maxHealth;
     public int currentHealth;
 
+    // Interact prefab
+    public GameObject interactPrompt;
+
     new void Awake()
     {
         interactionScript = new Interaction(this);
-        movementScript = GetComponent<ProtoMovement>();
+        movementScript = GetComponent<Movement>();
         base.Awake();
     }
 

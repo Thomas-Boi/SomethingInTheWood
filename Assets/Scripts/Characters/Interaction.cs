@@ -18,6 +18,8 @@ public class Interaction
     private float interactRange = 55.0f;
     private GameObject[] interactables;
     private GameObject interactObject;
+    private GameObject interactPrompt;
+
     private Color objectColor;
     private bool promptEnabled;
 
@@ -30,6 +32,8 @@ public class Interaction
     // weapon
     public Image weaponImage;
 
+    // canvas
+    private Canvas canvas;
 
     public Interaction(Player player)
     {
@@ -37,67 +41,72 @@ public class Interaction
         // find all things that can be interact with
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+        interactPrompt = player.interactPrompt;
         promptEnabled = false;
     }
 
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    /// <param name="isTalking">
-    /// Whether the player is talking (either to themselves
-    /// or others).
-    /// </param>
     public void Update()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
 
         // If object is within designated range of player, allow player to interact 
-        // For testing purposes, change the color of TestNPC to let the player know they are in range
-        // Later we should have a state that lets the player know they are in range
-        // E.g. Change sprite to show colored outline, and when out of range, revert to sprite without outline
         if (ObjectInRange())
         {
-            if (!promptEnabled)
+            if (promptEnabled)
             {
-                objectColor = interactObject.GetComponent<SpriteRenderer>().color;
-                promptEnabled = true;
+                interactPrompt.SetActive(false);
+            } else
+            {
+                Vector2 objectPos = interactObject.transform.position;
+                Vector2 displayPos = objectPos;
+                displayPos.y -= 2;
+                interactPrompt.SetActive(true);
+                interactPrompt.transform.position = displayPos;
             }
-            interactObject.GetComponent<SpriteRenderer>().color = Color.red;
-            
         }
         else
         {
-            if (interactObject != null)
+            promptEnabled = false;
+            if (interactObject)
             {
-                interactObject.GetComponent<SpriteRenderer>().color = objectColor;
-                promptEnabled = false;
+                interactPrompt.SetActive(false);
                 interactObject = null;
+            }
+            if (!interactObject)
+            {
+                interactPrompt.SetActive(false);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // sometimes player talks to themselves
             if (curDialogue != null)
             {
+                SoundManager.PlayOneClip(AudioClips.singleton.dialogTick, 1f);
                 ContinueTalking();
                 return;
             }
 
             if (!interactObject) return;
 
-            if (interactObject.GetComponent<Character>()) // is a character
+            if (interactObject.GetComponent<NPC>()) // is an NPC
             {
-                StartTalking(interactObject.GetComponent<Character>());
+                SoundManager.PlayOneClip(AudioClips.singleton.dialogTick, 1f);
+                StartTalking(interactObject.GetComponent<NPC>());
+                promptEnabled = true;
             }
 
             if (interactObject.GetComponent<Item>()) // is an item
             {
+                SoundManager.PlayOneClip(AudioClips.singleton.itemPickup, 1f);
                 string itemName = interactObject.GetComponent<Item>().Interact();
-                if (questManager.CheckQuestItem(itemName))
-                {
-                    // recheck the interactables in case one got destroyed
-                    interactables = GameObject.FindGameObjectsWithTag("Interactable");
-                }
+                questManager.CheckQuestItem(itemName);
             }
 
         }
@@ -137,6 +146,10 @@ public class Interaction
         }
     }
 
+    /// <summary>
+    /// Checks if an interactable object is within designated range of player
+    /// </summary>
+    /// <returns></returns>
     private bool ObjectInRange()
     {
         foreach (GameObject go in interactables)
@@ -150,6 +163,4 @@ public class Interaction
         }
         return false;
     }
-
-    
 }

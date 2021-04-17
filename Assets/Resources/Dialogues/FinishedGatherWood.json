@@ -1,5 +1,6 @@
 {
-  "questName": "",
+  "nextDialogue": "HuntFirstTime",
+  "nextQuest": "TalkToJohn",
 	"mainDialogue": [
 		{
 			"speaker": "Jack",
@@ -9,6 +10,5 @@
 			"speaker": "John",
 			"speech": "Great, give it here and I’ll set everything up."
 		}
-	],
-  "idleDialogue": []
+	]
 }
