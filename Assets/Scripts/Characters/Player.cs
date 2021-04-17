@@ -13,6 +13,9 @@ public class Player : Character
     public int maxHealth;
     public int currentHealth;
 
+    // Interact prefab
+    public GameObject interactPrompt;
+
     new void Awake()
     {
         interactionScript = new Interaction(this);

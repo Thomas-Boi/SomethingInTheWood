@@ -18,6 +18,8 @@ public class Interaction
     private float interactRange = 55.0f;
     private GameObject[] interactables;
     private GameObject interactObject;
+    private GameObject interactPrompt;
+
     private Color objectColor;
     private bool promptEnabled;
 
@@ -30,6 +32,8 @@ public class Interaction
     // weapon
     public Image weaponImage;
 
+    // canvas
+    private Canvas canvas;
 
     public Interaction(Player player)
     {
@@ -37,6 +41,9 @@ public class Interaction
         // find all things that can be interact with
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
         questManager = GameObject.Find("Canvas").GetComponent<QuestManager>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+        interactPrompt = player.interactPrompt;
         promptEnabled = false;
     }
 
@@ -48,26 +55,31 @@ public class Interaction
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
 
         // If object is within designated range of player, allow player to interact 
-        // For testing purposes, change the color of TestNPC to let the player know they are in range
-        // Later we should have a state that lets the player know they are in range
-        // E.g. Change sprite to show colored outline, and when out of range, revert to sprite without outline
         if (ObjectInRange())
         {
-            if (!promptEnabled)
+            if (promptEnabled)
             {
-                objectColor = interactObject.GetComponent<SpriteRenderer>().color;
-                promptEnabled = true;
+                interactPrompt.SetActive(false);
+            } else
+            {
+                Vector2 objectPos = interactObject.transform.position;
+                Vector2 displayPos = objectPos;
+                displayPos.y -= 2;
+                interactPrompt.SetActive(true);
+                interactPrompt.transform.position = displayPos;
             }
-            interactObject.GetComponent<SpriteRenderer>().color = Color.red;
-            
         }
         else
         {
+            promptEnabled = false;
             if (interactObject != null)
             {
-                interactObject.GetComponent<SpriteRenderer>().color = objectColor;
-                promptEnabled = false;
+                interactPrompt.SetActive(false);
                 interactObject = null;
+            }
+            if (!interactObject)
+            {
+                interactPrompt.SetActive(false);
             }
         }
 
@@ -85,6 +97,7 @@ public class Interaction
             if (interactObject.GetComponent<NPC>()) // is an NPC
             {
                 StartTalking(interactObject.GetComponent<NPC>());
+                promptEnabled = true;
             }
 
             if (interactObject.GetComponent<Item>()) // is an item
@@ -130,6 +143,10 @@ public class Interaction
         }
     }
 
+    /// <summary>
+    /// Checks if an interactable object is within designated range of player
+    /// </summary>
+    /// <returns></returns>
     private bool ObjectInRange()
     {
         foreach (GameObject go in interactables)

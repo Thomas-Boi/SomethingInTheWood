@@ -12,9 +12,10 @@ public class Movement : MonoBehaviour
     private bool canMove;
     public float knockbackTime;
     public float invincibleTime;
+
+
     public SpriteRenderer sprite;
-
-
+    private Animator animator;
 
     /// <summary>
     /// Whether the player can move or not.
@@ -41,6 +42,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         CanMove = true;
+        animator = GetComponentInChildren<Animator>();
     }
 
 
@@ -75,6 +77,23 @@ public class Movement : MonoBehaviour
             float xDir = Input.GetAxisRaw("Horizontal") * movementSpeed;
             float yDir = Input.GetAxisRaw("Vertical") * movementSpeed;
             movement = new Vector2(xDir, yDir);
+            if (xDir < 0)
+            {
+                sprite.flipX = true;
+            } 
+            else if (xDir > 0)
+            {
+                sprite.flipX = false;
+            }
+
+            if (xDir == 0 && yDir == 0)
+            {
+                animator.SetBool("isWalking", false);
+            }
+            else
+            {
+                animator.SetBool("isWalking", true);
+            }
             Move();
         }
 
