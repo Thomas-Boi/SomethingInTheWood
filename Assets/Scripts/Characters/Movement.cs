@@ -81,18 +81,18 @@ public class Movement : MonoBehaviour
             {
                 sprite.flipX = true;
             } 
-            else
+            else if (xDir > 0)
             {
                 sprite.flipX = false;
             }
 
             if (xDir == 0 && yDir == 0)
             {
-                animator.SetBool("IsWalking", false);
+                animator.SetBool("isWalking", false);
             }
             else
             {
-                animator.SetBool("IsWalking", true);
+                animator.SetBool("isWalking", true);
             }
             Move();
         }
