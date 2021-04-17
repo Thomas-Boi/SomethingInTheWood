@@ -53,8 +53,6 @@ public class BeachDirector : MonoBehaviour
     {
         if (args.dialogueData.dialogueName == "FinishedGatherWood")
         {
-            
-
             // Play sounds for camp fire
             StartCoroutine(playCampAssemblySounds());
         }
