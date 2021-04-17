@@ -72,7 +72,7 @@ public class Interaction
         else
         {
             promptEnabled = false;
-            if (interactObject != null)
+            if (interactObject)
             {
                 interactPrompt.SetActive(false);
                 interactObject = null;
