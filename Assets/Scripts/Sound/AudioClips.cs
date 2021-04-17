@@ -13,7 +13,8 @@ public class AudioClips : MonoBehaviour
     public AudioClip boarDamaged3;
     public AudioClip boarGrunt1;
     public AudioClip boarGrunt2;
-    public AudioClip gunReload;
+    public AudioClip gunReloadShort;
+    public AudioClip gunReloadLong;
     public AudioClip gunEmpty;
     public AudioClip UITick;
     public AudioClip dialogTick;

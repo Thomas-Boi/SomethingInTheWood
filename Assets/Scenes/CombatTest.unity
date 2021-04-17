@@ -3992,6 +3992,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3129404378031745772, guid: d5936de5245e1af488e3a375115ea6ca, type: 3}
+      propertyPath: m_TagString
+      value: PlayerAmmo
+      objectReference: {fileID: 0}
     - target: {fileID: 3463472526554862963, guid: d5936de5245e1af488e3a375115ea6ca, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

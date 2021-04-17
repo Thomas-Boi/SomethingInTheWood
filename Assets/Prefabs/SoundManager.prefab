@@ -51,7 +51,8 @@ MonoBehaviour:
   boarDamaged3: {fileID: 8300000, guid: 93b9c17936b20db4f8e76f378e1037fb, type: 3}
   boarGrunt1: {fileID: 8300000, guid: c79f7b4c6af47b54ba9c675e51106055, type: 3}
   boarGrunt2: {fileID: 8300000, guid: c3553ebc56ce4c444a8f7c0207906ff4, type: 3}
-  gunReload: {fileID: 8300000, guid: 4e2f7fda4cf6fcc40ae78767450282b4, type: 3}
+  gunReloadShort: {fileID: 8300000, guid: 4e2f7fda4cf6fcc40ae78767450282b4, type: 3}
+  gunReloadLong: {fileID: 8300000, guid: 8c6b2fabe3a111046bcb603df07149f8, type: 3}
   gunEmpty: {fileID: 8300000, guid: 53c7c4905b99b164f9c17ae31758ce8e, type: 3}
   UITick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
   dialogTick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
