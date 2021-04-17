@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -56,6 +57,9 @@ public class BeachDirector : MonoBehaviour
             {
                 child.gameObject.SetActive(true);
             }
+
+            // Play sounds for camp fire
+           // Task.Delay(1000).ContinueWith(t => bar());
         }
     }
 
@@ -67,3 +71,17 @@ public class BeachDirector : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+/*public void foo()
+{
+    Task.Delay(1000).ContinueWith(t=> bar());
+}
+
+public void bar()
+{
+    // do stuff
+}*/

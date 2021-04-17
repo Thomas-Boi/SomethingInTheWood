@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8928835223815776171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8928835223815776169}
+  - component: {fileID: 8928835223815776168}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8928835223815776169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928835223815776171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 48.259422, y: 16.64055, z: -90.73692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8928835223815776168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928835223815776171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1121b4e2d0cb0c1489ff22fdbab65c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShot: {fileID: 8300000, guid: 4ffa449fb1bce4341bc7ddeb281c9cc9, type: 3}
+  shotImpact: {fileID: 8300000, guid: 28d2391640aea5141a68cb06a7ccaf40, type: 3}
+  fleshImpact: {fileID: 8300000, guid: 17f1636927ae3954bae0c691b3e3002a, type: 3}
+  boarDamaged1: {fileID: 8300000, guid: feb4725bfded4c14fa8ff120d93c55c3, type: 3}
+  boarDamaged2: {fileID: 8300000, guid: 51e91e213da42c34089c27b6c74e9025, type: 3}
+  boarDamaged3: {fileID: 8300000, guid: 93b9c17936b20db4f8e76f378e1037fb, type: 3}
+  boarGrunt1: {fileID: 8300000, guid: c79f7b4c6af47b54ba9c675e51106055, type: 3}
+  boarGrunt2: {fileID: 8300000, guid: c3553ebc56ce4c444a8f7c0207906ff4, type: 3}
+  gunReload: {fileID: 8300000, guid: 4e2f7fda4cf6fcc40ae78767450282b4, type: 3}
+  gunEmpty: {fileID: 8300000, guid: 53c7c4905b99b164f9c17ae31758ce8e, type: 3}
+  UITick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
+  dialogTick: {fileID: 8300000, guid: a52eaae0204883548a0d40937082e73b, type: 3}
+  playerHurt: {fileID: 8300000, guid: b8f7678597f1b224ba59de47076ed11d, type: 3}
+  itemPickup: {fileID: 8300000, guid: 43e65a2588b4b1e4b854541c2c585653, type: 3}
+  craftCamp: {fileID: 8300000, guid: 795bea79719498545950fc3e74b3c1d9, type: 3}
+  campFire: {fileID: 8300000, guid: 48101374bf793b04d9686ec19ca3d2b8, type: 3}

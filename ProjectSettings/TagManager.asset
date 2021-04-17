@@ -11,6 +11,8 @@ TagManager:
   - Interactable
   - QuestItem
   - Enemy
+  - walkSoundSrc
+  - campfire
   layers:
   - Default
   - TransparentFX

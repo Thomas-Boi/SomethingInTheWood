@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     public float knockbackTime;
     public float invincibleTime;
     public SpriteRenderer sprite;
+    private bool isWalking;
 
 
 
@@ -78,7 +79,30 @@ public class Movement : MonoBehaviour
             Move();
         }
 
-
+        // Player walking sound loop
+        if (canMove)
+        {
+            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
+            {
+                if (isWalking == false)
+                {
+                    isWalking = true;
+                    SoundManager.startLoopingSoundOnObjectWithTag("walkSoundSrc");
+                }
+            }
+            else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+            {
+                if (isWalking == true)
+                {
+                    SoundManager.stopLoopingSoundOnObjectWithTag("walkSoundSrc");
+                    isWalking = false;
+                }
+            }
+        }
+        else
+        {
+            SoundManager.stopLoopingSoundOnObjectWithTag("walkSoundSrc");
+        }
         // Aiming and Shooting
     }
 }
