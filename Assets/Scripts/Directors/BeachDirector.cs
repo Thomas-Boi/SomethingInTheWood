@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -52,10 +53,10 @@ public class BeachDirector : MonoBehaviour
     {
         if (args.dialogueData.dialogueName == "FinishedGatherWood")
         {
-            foreach (Transform child in GameObject.Find("Camp").transform)
-            {
-                child.gameObject.SetActive(true);
-            }
+            
+
+            // Play sounds for camp fire
+            StartCoroutine(playCampAssemblySounds());
         }
     }
 
@@ -64,6 +65,18 @@ public class BeachDirector : MonoBehaviour
         if (args.dialogueData.dialogueName == "CampFireTalk")
         {
             SceneLoader.LoadJungleScene();
+        }
+    }
+
+    IEnumerator playCampAssemblySounds()
+    {
+        SoundManager.PlayOneClip(AudioClips.singleton.craftCamp, 1f);
+
+        yield return new WaitForSeconds(1.9f);
+
+        foreach (Transform child in GameObject.Find("Camp").transform)
+        {
+            child.gameObject.SetActive(true);
         }
     }
 }

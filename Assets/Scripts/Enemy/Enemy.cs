@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 30)
             {
+                playBoarAggroSound(transform.position);
                 aggro = true;
             }
             agent.speed = 0;
@@ -116,7 +117,7 @@ public class Enemy : MonoBehaviour
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
             knockbackTime = .5f;
-
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.playerHurt, col.gameObject.GetComponent<Player>().transform.position, 1.0f);
             col.gameObject.GetComponent<Movement>().knockbackTime = .2f;
             col.gameObject.GetComponent<Movement>().invincibleTime = 1f;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1000, ForceMode2D.Impulse);
@@ -126,13 +127,13 @@ public class Enemy : MonoBehaviour
 
             Debug.Log(direction * 100);
         }
-        
-
     }
 
     void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.fleshImpact, col.gameObject.transform.position, 0.3f);
+            playBoarDamagedSound(col.gameObject.transform.position);
             aggro = true;
             Destroy(col.gameObject);
             agent.velocity = new Vector2(0, 0);
@@ -141,6 +142,7 @@ public class Enemy : MonoBehaviour
             invincibleTime = 0.1f;
             health--;
             if (health <= 0) {
+                playBoarKilledSound(col.gameObject.transform.position);
                 Destroy(gameObject);
                 var args = new EnemyKilledEventArgs
                 { 
@@ -151,6 +153,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Plays random sound from list of sounds for boar damage
+    private void playBoarDamagedSound(Vector3 location)
+    {
+        List<AudioClip> clips = new List<AudioClip>();
+        clips.Add(AudioClips.singleton.boarDamaged1);
+        clips.Add(AudioClips.singleton.boarDamaged2);
+        clips.Add(AudioClips.singleton.boarDamaged3);
+        SoundManager.playRandomFromList(clips, location, 1);
+    }
+    private void playBoarKilledSound(Vector3 location)
+    {
+        List<AudioClip> clips = new List<AudioClip>();
+        clips.Add(AudioClips.singleton.boarGrunt1);
+        clips.Add(AudioClips.singleton.boarGrunt2);
+        SoundManager.playRandomFromList(clips, location, 1);
+    }
+    private void playBoarAggroSound(Vector3 location)
+    {
+        List<AudioClip> clips = new List<AudioClip>();
+        clips.Add(AudioClips.singleton.boarGrunt1);
+        clips.Add(AudioClips.singleton.boarGrunt2);
+        SoundManager.playRandomFromList(clips, location, 1);
+    }
 
 
 }
