@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8965110587227997335}
   - component: {fileID: 1377589846049052312}
-  m_Layer: 0
+  - component: {fileID: -8087216425586011701}
+  - component: {fileID: 131562567385199069}
+  - component: {fileID: 6691262549017024704}
+  m_Layer: 10
   m_Name: bigInfected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7883192381071568083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 148.85, y: -3.09, z: -145.2689}
+  m_LocalPosition: {x: 0, y: -3.09, z: 0}
   m_LocalScale: {x: 3.3510263, y: 2.7923565, z: 2.8285978}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,3 +85,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8087216425586011701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883192381071568083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152869df76a423f4799e5f711d9c3d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  hitstunSeconds: 0.05
+  hitInvincibilitySeconds: 0.1
+  speed: 10
+  acceleration: 100
+  health: 20
+  aggroDistance: 10
+  farAwayDistance: 0
+  aggro: 0
+  invincibleTime: 0
+  knockbackTime: 0
+--- !u!195 &131562567385199069
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883192381071568083}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 30
+  m_Acceleration: 25
+  avoidancePriority: 85
+  m_AngularSpeed: 90
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!70 &6691262549017024704
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883192381071568083}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.30537257}
+  m_Size: {x: 0.8000001, y: 2.5892553}
+  m_Direction: 0

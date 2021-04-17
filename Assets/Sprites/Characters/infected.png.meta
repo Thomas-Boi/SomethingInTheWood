@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 2666327848672029070
     second: topdown_rpg_char_base (1)_3
+  - first:
+      213: -6789743617609389501
+    second: infected_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,8 +123,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,8 +144,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,8 +165,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,8 +186,8 @@ TextureImporter:
         y: 0
         width: 32
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -15,18 +15,34 @@ public class EnemyKilledEventArgs : EventArgs
     public string enemyName;
 }
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    protected NavMeshAgent agent;
+    protected Animator anim;
+    protected SpriteRenderer rend;
 
-    private NavMeshAgent agent;
-    private Animator anim;
-    private SpriteRenderer rend;
-    public bool aggro;
-    public float knockbackTime;
+    [SerializeField]
+    protected Transform target;
+    protected Color normalColor;
+
+
+    public float hitstunSeconds = 0.1f;
+    public float hitInvincibilitySeconds = 0.1f;
+    public float speed;
+    public float acceleration;
     public int health;
 
-    public float invincibleTime;
+    public float aggroDistance;
+    public float farAwayDistance;
+
+    public bool aggro;
+
+    //hidden stuff
+    //[HideInInspector]
+    public float invincibleTime = 0;
+    //[HideInInspector]
+    public float knockbackTime = 0;
+    
 
     // Start is called before the first frame update
     protected void Start()
@@ -37,21 +53,18 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.acceleration = acceleration;
+
+        normalColor = rend.color;
+
 
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        if (invincibleTime > 0)
-        {
-            invincibleTime -= Time.deltaTime;
-            rend.color = new Color(1, 0, 0, 1);
-        }
-        else
-        {
-            rend.color = new Color(1, 1, 1, 1);
-        }
+        HandleInvincible();
+
 
         agent.SetDestination(target.position);
 
@@ -62,50 +75,51 @@ public class Enemy : MonoBehaviour
             knockbackTime -= Time.deltaTime;
             agent.velocity = new Vector2(0, 0);
         }
-        else
-        {
-        }
 
 
-        // todo: Make aggro distances and speeds into variables
         if (!aggro)
         {
-            if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 30)
+            if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < aggroDistance)
             {
                 aggro = true;
             }
             agent.speed = 0;
-
-
         }
-        else if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) > 30 && knockbackTime <= 0)
+        else if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) > farAwayDistance && knockbackTime <= 0)
         {
-            agent.speed = 10;
+            farAwayBehavior();
         }
         else if (knockbackTime <= 0)
         {
-            agent.speed = 30;
+            agent.speed = speed;
         }
         else
         {
-            agent.speed = 0f;
+            agent.speed = 0;
         }
     }
 
     // todo: Move this to a subclass
-    void PlayAnimation()
+    protected abstract void PlayAnimation();
+
+
+
+    protected virtual void farAwayBehavior()
     {
-        anim.speed = Mathf.Max(Mathf.Abs(agent.velocity.x), Mathf.Abs(agent.velocity.y)) / 10;
+        agent.speed = speed;
+    }
 
-        if (agent.velocity.x < 0)
+    protected virtual void HandleInvincible()
+    {
+        if (invincibleTime > 0)
         {
-            rend.flipX = true;
+            invincibleTime -= Time.deltaTime;
+            rend.color = new Color(1, 0, 0, 1);
         }
-        if (agent.velocity.x > 0)
+        else
         {
-            rend.flipX = false;
+            rend.color = normalColor;
         }
-
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -126,24 +140,26 @@ public class Enemy : MonoBehaviour
 
             Debug.Log(direction * 100);
         }
-        
+
 
     }
 
-    void OnTriggerStay2D(Collider2D col) {
+    void OnTriggerStay2D(Collider2D col)
+    {
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
             aggro = true;
             Destroy(col.gameObject);
             agent.velocity = new Vector2(0, 0);
             agent.speed = 0;
-            knockbackTime = 0.1f;
-            invincibleTime = 0.1f;
+            knockbackTime = hitstunSeconds;
+            invincibleTime = hitInvincibilitySeconds;
             health--;
-            if (health <= 0) {
+            if (health <= 0)
+            {
                 Destroy(gameObject);
                 var args = new EnemyKilledEventArgs
-                { 
+                {
                     enemyName = this.GetType().Name
                 };
                 EventTracker.GetTracker().EnemyWasKilled(this, args);

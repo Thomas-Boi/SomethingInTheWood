@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6220458258143124610}
   - component: {fileID: 787649347577674250}
   m_Layer: 10
-  m_Name: infected_boar
+  m_Name: infectedBoar
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,6 +189,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   aggro: 0
+  speed: 40
+  acceleration: 30
   knockbackTime: 0
-  health: 0
+  health: 30
+  aggroDistance: 25
+  farAwayDistance: 30
   invincibleTime: 0
+  farAwaySpeed: 20
