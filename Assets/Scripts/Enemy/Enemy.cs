@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 30)
             {
+                playBoarAggroSound(transform.position);
                 aggro = true;
             }
             agent.speed = 0;
@@ -126,14 +127,12 @@ public class Enemy : MonoBehaviour
 
             Debug.Log(direction * 100);
         }
-        
-
     }
 
     void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "Bullet" && invincibleTime <= 0)
         {
-            //SoundManager.PlayOneClipAtLocation(AudioClips.singleton.fleshImpact, col.gameObject.transform.position, 0.3f);
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.fleshImpact, col.gameObject.transform.position, 0.3f);
             playBoarDamagedSound(col.gameObject.transform.position);
             aggro = true;
             Destroy(col.gameObject);
@@ -164,6 +163,13 @@ public class Enemy : MonoBehaviour
         SoundManager.playRandomFromList(clips, location, 1);
     }
     private void playBoarKilledSound(Vector3 location)
+    {
+        List<AudioClip> clips = new List<AudioClip>();
+        clips.Add(AudioClips.singleton.boarGrunt1);
+        clips.Add(AudioClips.singleton.boarGrunt2);
+        SoundManager.playRandomFromList(clips, location, 1);
+    }
+    private void playBoarAggroSound(Vector3 location)
     {
         List<AudioClip> clips = new List<AudioClip>();
         clips.Add(AudioClips.singleton.boarGrunt1);

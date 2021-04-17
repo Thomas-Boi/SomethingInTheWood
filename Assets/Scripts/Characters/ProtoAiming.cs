@@ -44,7 +44,7 @@ public class ProtoAiming : MonoBehaviour
             // Set the rotation to be same as parent since the parent is the barrel.
             GameObject bullet = Instantiate(bulletPrefab, gunChamber.transform.position, transform.rotation) as GameObject;
             // Play shot sound
-            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.playerShot, gunChamber.transform.position, 1.0f);
+            SoundManager.PlayOneClipAtLocation(AudioClips.singleton.playerShot, gunChamber.transform.position, 0.15f);
         }
     }
 }
